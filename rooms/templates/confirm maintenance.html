@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2><a href="{% url 'rooms home' %}">Return To Rooms Home</a></h2>
+    {% if massege %}
+        <h2 style="color: red;">{{ massege }}</h2>
+    {% endif %}
+    <form action="{% url 'confirm maintenance' id=room.id %}" method="post">{% csrf_token %}
+        <p><b>Room ID: </b>{{room.id}}</p>
+        <p><b>Room Type: </b>{{ room.type }}</p>
+        <p><b>Floor: </b>{{ room.floor }}</p>
+        <p><b>State: </b>{{ room.stateName}}</p>
+        <p>Start Date: <input type="date" name="start date"></p>
+        <p>End Date: <input type="date" name="end date"></p>
+        <input type="submit" value="Confirm">
+    </form>
+</body>
+</html>

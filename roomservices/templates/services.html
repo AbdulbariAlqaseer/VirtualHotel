@@ -1,0 +1,74 @@
+{% extends 'admin base.html' %}
+{% block content %}
+<h2 class="text-center"> Services </h2>
+
+{% if error %}
+<p style="color: red;">{{error}}</p>
+{% endif %}
+{% if massege %}
+<p style="color: red;">{{massege}}</p>
+{% endif %}
+{% for message in messages %}
+    <p style="color: green;">{{message}}</p>
+{% endfor %}
+
+<div id="forms" class="forms">
+    <form action="{% url 'service home' %}" method="POST">{% csrf_token %}
+
+        <div class="form-group">
+
+            <div class="grid">
+                <div class="col-1-3 col-1-3-sm">
+                    <div class="controls">
+                        <button type="submit" class="main-bot return-bot" value="Submit" style="color: black;">Add
+                            Service</button>
+                    </div>
+                </div>
+                <div class="col-1-3 col-1-3-sm">
+                    <div class="controls">
+                        <input type="text" name='name' id="address" class="floatLabel">
+                        <label for="address" name="name">name</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+<h1 class="text-center">
+
+    Services Details
+
+</h1>
+
+
+<div class="table-responsive">
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for service in services %}
+            <tr>
+                <td>{{service.id}}</td>
+                <td>{{service.name}}</td>
+                <td>
+                    <form action="{% url 'delete service' id=service.id %}" style="display: inline-block;">
+                        <input type="submit" class="btn btn-sm" value="delete">
+                    </form>
+
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

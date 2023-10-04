@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if staff %}
+        <script>
+            var id = '{{staff.id}}';
+        </script>
+    {% endif %}
+    <script src="{% static 'account/update staff.js' %}"></script>
+    <title>Document</title>
+</head>
+
+<!-- This Page Is For Updating The Staff: (We Will Allow To Update More Than One Staff) -->
+
+<body>
+    <h2><a href="{% url 'show staff' %}">Go Back To Staff Page</a></h2>
+    {% if massege %}
+        <p style="color: red;">{{ massege }}</p>
+    {% endif %}
+    <p>Please Implement The Changes Then Press Done(Please Check The Changed Staff):</p>
+    <form action="{% url 'update staff' %}" method="POST">{% csrf_token %}
+        <input type="search" name="staff email" class = 'staff email search'>
+        <input type="submit" value="Search">
+    </form>
+
+    {% if massege %}
+    <p style="color: green;">{{massege}}</p>
+    {% endif %}
+
+    {% if staff %}
+    <form action="{% url 'update specific' id=staff.id %}" method="POST" id= "form">{% csrf_token %}
+        <b>Staff ID: </b> <section id="staff id">{{staff.id}}</section><br>
+        <b>Staff Name: </b> <section class="staff name">{{staff.Account_id.first_name}}</section><br>
+        <b>Staff Last Name: </b><section class="staff last name">{{staff.Account_id.last_name}}</section><br>
+        <b>E-mail: </b><section class="staff email">{{staff.Account_id.email}}</section><br>
+        <b>Staff Address: </b><section class="staff address"><input id="staff address input" class="address input" type="text" name="Address" value="{{staff.Address}}"></section><br>
+        <input type="submit" value="Submit">
+        <hr>
+    </form>
+    {% endif %}
+</body>
+</html>

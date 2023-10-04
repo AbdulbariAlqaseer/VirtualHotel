@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if not request.user.is_staff %}
+    <h2><a href="{% url 'add review' %}">Add Review</a></h2>
+    <h2><a href="{% url 'view my reviews' %}">View My Reviews</a></h2>
+    {% endif %}
+
+    <p>Reviews:</p>
+    {% for review in reviews %}
+        <p>User: {{review.Account_id.first_name}} {{review.Account_id.last_name}} </p>
+        <p>Rating: {{review.rating}} </p>
+        <p>Date: {{review.date}} </p>
+        <p> {{review.desc}} </p>
+        <hr>
+    {% endfor %}
+
+</body>
+</html>

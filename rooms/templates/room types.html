@@ -1,0 +1,120 @@
+{% extends 'admin base.html' %}
+{% load static %}
+{% block content %}
+<h1 class="text-center">
+
+    ROOM TYPES DETAILS
+
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <section style="color: green;">{{message}}</section>
+        {% endif %}
+        {% if message.tags == 'error' %}
+            <section style="color: red;">{{message}}</section>
+        {% endif %}
+    {% endfor %}
+
+</h1>
+<section class="rooms text-center" id="rooms">
+    <div class="container">
+        <div class="row">
+            {% for type in roomtypes %}
+            <div class="col-md-6  px-3">
+                <div class="card">
+                    <div class="img-con"><img src="{{type.image.url}}" class="card-img-top"
+                            alt="room photo"></div>
+                    <div class="card-body" style="min-height: 520px;">
+                        <h5 class="card-title">{{type.name}}</h5>
+                        <p class="card-text">{{type.desc}}.</p>
+                        <ul class="list-group">
+                            <li class="list-group-item">{{type.price}} $</li>
+                            <hr>
+                            <li class="list-group-item">{{type.beds}} beds</li>
+                            <hr>
+                            <li class="list-group-item">{{type.max_guests}} people</li>
+                        </ul>
+                        <button type="button" class="btn" data-toggle="modal" data-target="#editType6">
+                            Edit
+                        </button>
+                    </div>
+                </div>
+                <div class="modal fade" id="editType6" tabindex="-1" aria-labelledby="typeModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="typeModalLabel">edit room type</h5>
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="forms" class="forms">
+                                    <form action="{% url 'update room type' name=type.name %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                                        <!--  General -->
+                                        <label for="photo " class="photo-label">main photo</label>
+                                        <input type="file" name="photo" id="photo" class="floatLabel" accept="image/x-png,image/gif,image/jpeg"/>
+                                        
+                                        <div class="form-group">
+                                            
+                                            <div class="controls">
+                                                <input type="text" id="price" class="floatLabel"
+                                                    name="price" value="{{type.price}}" required/>
+                                                <label for="price"><i class="fas fa-dollar-sign"></i>&nbsp;&nbsp;Price</label>
+                                            </div>
+                                            
+                                        </div>
+                                       
+                                        <!--  Details -->
+                                        <div class="form-group">
+
+                                            <div class="grid">
+                                                <div class="col-1-2 col-1-2-sm">
+                                                    <div class="controls">
+                                                        
+                                                        <input type="number" min="1"  name="people" id="people" class="floatLabel" value="{{type.max_guests}}" required>
+                                                        <label for="people"><i
+                                                                class="fa fa-male"></i>&nbsp;&nbsp;People</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1-2 col-1-2-sm">
+                                                    <div class="controls">
+                                                   
+                                                        <input type="number" min="1"  name="bed" id="bed" class="floatLabel" value="{{type.beds}}" required>
+                                                        <label for="bed"> <i class="fas fa-bed"></i>&nbsp;&nbsp;Bed</label>
+                                                      
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="grid">
+                                                <p class="info-text">
+                                                    Please add derscription to the room type
+                                                </p>
+                                                <br />
+                                                <div class="controls">
+                                                    <textarea name="description" class="floatLabel"
+                                                        id="description" maxlength = "135" required>{{type.desc}}</textarea>
+                                                    <label for="description">Description</label>
+                                                </div>
+                                                <button type="submit" class="main-bot" value="Submit">Submit</button>
+                                            </div>
+                                        </div>
+                                        <!-- /.form-group -->
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+</section>
+{% endblock %}

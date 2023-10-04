@@ -1,0 +1,205 @@
+{% extends 'admin base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-sm-12 text-center ">
+    <button type="button" name="add-offer" class="btn  "style="background-color: #FFC300; margin:30px " data-toggle="modal" data-target="#offerModal">Add new offer</button>
+  </div>
+    
+
+
+<div class="modal fade" id="offerModal" tabindex="-1" aria-labelledby="offerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+      <div class="modal-content ">
+
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="offerModalLabel">Add offer</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+
+        <div class="modal-body" >
+          
+              <div id="forms" class="forms">
+                <form action="{% url 'add offer' %}" method="POST">{% csrf_token %}
+                   
+                    
+                    <div class="form-group">
+
+                        <div class="controls">
+                            <input type="text" id="id" class="floatLabel" name="name" required/>
+                            <label for="id">name</label>
+                        </div>
+
+                    </div>
+                   
+                  
+                    <div class="form-group">
+
+                        <div class="grid">
+                           
+                                <div class="controls">
+                                    
+                                    <input type="text"  name="percentage" id="percentage" class="floatLabel" required>
+                                    <label for="percentage">percentage</label>
+                                </div>
+                            
+                            
+                                <div class="controls">
+                               
+                                    <input type="date" min="1"  name="lastdate" id="lastdate" class="floatLabel" required>
+                                    <label for="lastdate">last date</label>
+                                  
+                                </div>
+                            
+                        </div>
+                        
+                           </div>
+                          
+                          
+                                
+                        <fieldset class="scheduler-border">
+                          <legend class="scheduler-border">choose room types</legend>
+                          <div class="control-group">
+                         
+                                <div class="add-services">
+                                    {% for type in types %}
+                                    <div class="form-check form-check-inline">
+                  
+                                        <label class=" contain" style="font-size: medium;" for="inlineCheckbox{{type.name}}">
+                                          <input class="form-check-input" type="checkbox" id="inlineCheckbox{{type.name}}" value="{{type.name}}" name="{{type.name}}">
+                                          <span class="checkmark"></span>
+                                          {{type.name}}</label>
+                                      </div>
+                                    {% endfor %}
+                                  <div class="form-check form-check-inline">
+                  
+                                    <label class=" contain" style="font-size: medium;" for="inlineCheckbox1">
+                                      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Deluxe room">
+                                      <span class="checkmark"></span>
+                                      Deluxe room</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                  
+                                    <label class=" contain"style="font-size: medium;"  for="inlineCheckbox2">
+                                      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value=" Mariotte Gold Junior Suite">
+                                      <span class="checkmark"></span>
+                                      Mariotte Gold Junior Suite</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                  
+                                    <label class=" contain" style="font-size: medium;" for="inlineCheckbox3">
+                                      <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
+                                        value="Mariotte Gold Suite">
+                                      <span class="checkmark"></span>
+                                      Mariotte Gold Suite</label>
+                                  </div>
+                                 
+                                </div>
+                                </div>
+                        </fieldset>
+                            
+                            <button type="submit" class="main-bot" value="Submit">Submit</button>
+                        
+                  
+                    
+                </form>
+            </div>
+        </div>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"
+          data-dismiss="modal">Close</button>
+        
+        </div>
+
+        <script>
+            function validate(){
+                var valid= false;
+                if(document.getElementById("exampleCheck1").checked){
+                    valid =true;
+                }
+
+                if(valid){
+                    alert("Accept offer view successful ");
+                  }
+                  else{
+                      alert("please sign a tick ");
+                      return false; 
+                  }
+                }
+                
+            
+        </script> 
+
+      </div>
+    </div>
+  </div>
+
+  <h1 class="text-center">
+  
+    OFFERS  DETAILS 
+   {% for message in messages %}
+    {% if message.tags == 'success' %}
+        <section style="color: green;">{{message}}</section>
+    {% endif %}
+    {% if message.tags == 'error' %}
+        <section style="color: red;">{{message}}</section>
+    {% endif %}
+
+   {% endfor %}
+ </h1>
+ 
+ <div class="container-fluid">
+ <div class="table-responsive" >
+   <table class="table table-hover table-bordered">
+     <thead class="thead-dark">
+       <tr>
+        <th>Offer ID </th>
+        <th>Name </th>
+        <th>Percentage </th>
+        <th> Start Date </th>
+        <th> End Date </th>
+        <th> Active </th>
+        <th>Room Type</th>
+         
+       </tr>
+     </thead>
+     <tbody>
+
+        {% for offer in offers %}
+        <tr>
+            <td>{{offer.id}}</td>
+            <td>{{offer.name}}</td>
+            <td> {{offer.percentage}}%</td>
+            <td> {{offer.start_date}} </td>
+            <td> {{offer.end_date}} </td>
+            <td> {{offer.is_active}} </td>
+            <td>  
+              <div class="dropdown">
+                <button class="btn  dropdown-toggle"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown button
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    {% for type in all_types %}
+                        {% if type.offer == offer %}
+                            <p class="dropdown-item" >{{type.name}}</p>
+                        {% endif %}
+                    {% endfor %}
+                  <p class="dropdown-item" >Action</p>
+                  <p class="dropdown-item" >Another action</p>
+                  <p class="dropdown-item" >Something else here</p>
+                </div>
+              </div>
+          </td>  
+          </tr>
+        {% endfor %}
+     </tbody>
+   </table>
+ </div>
+ 
+ </div>
+{% endblock %}

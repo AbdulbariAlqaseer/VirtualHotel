@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{% url 'test filter' %}" method="get">
+        {% for field in filter.form %}
+            {% if field.label_tag == 'Account_id__first_name' %}
+             First Name:
+            {% endif %}
+            {{field.label_tag}}
+            {{field}}
+        {% endfor %}
+        <input type="submit" value="Filter">
+    </form>
+    <br>
+    <hr>
+    <table border="2px">
+        {% for member in filter.qs %}
+            <tr>
+                <td>{{ member.id }}</td>
+                <td>{{member.Account_id.first_name}}</td>
+                <td>{{member.Account_id.last_name}}</td>
+                <td>{{member.Account_id.email}}</td>
+                <td>{{member.Address}}</td>
+                <td>{{member.Account_id.date_joined}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

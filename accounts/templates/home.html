@@ -1,0 +1,414 @@
+{% extends 'main base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero image -->
+<div class="wrapper " style="height: 100vh;">
+  <h3>NICE AND COMFORTABLE PLACE TO STAY</h3>
+  <div class="bg"></div>
+  <div class="slideshows">
+    <div class="slideshow slideshow--hero">
+      <div class="slides">
+        <div class="slide slide1"></div>
+        <div class="slide slide2"></div>
+        <div class="slide slide3"></div>
+      </div>
+    </div>
+    <div class="slideshow slideshow--contrast slideshow--contrast--before">
+      <div class="slides">
+        <div class="slide slide1"></div>
+        <div class="slide slide2"></div>
+        <div class="slide slide3"></div>
+      </div>
+    </div>
+    <div class="slideshow slideshow--contrast slideshow--contrast--after">
+      <div class="slides">
+        <div class="slide slide1"></div>
+        <div class="slide slide2"></div>
+        <div class="slide slide3"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- About Hotel -->
+<section class="hotel" id="hotel">
+  <div class="container">
+    <div class="title">
+      <h4>hotel</h4>
+
+    </div>
+    <div class="hotel-container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h2> About Mariotte</h2>
+          <hr>
+          <p><span class="capital">E</span>njoy an unforgettable experience at the Mariotte RJ Copacabana,
+            located in one of the most spectacular places in Rio de Janeiro,
+            the Copacabana Beach, under the majestic gaze of Sugar Loaf Mountain.
+            Inspired by the glamour carioca in the 1950's, this luxury hotel is an oasis.
+            There are 10 rooms categories with a balcony,
+            and the Gold Rooms offer a private lounge and exclusive services.
+            The hotel also has two swimming pools, spa, sauna, fitness center, restaurant, bars and meeting rooms.
+          </p>
+        </div>
+        <div class="col-lg-6 ">
+          <img class="wow fadeInRightBig rounded mx-auto d-block  "
+            src="{% static 'main/images/sara-dubler-koei_7yytio-unspla.jpg' %}" alt="Hotel-photo">
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col ">
+          <div class="accom text-center">
+            <h3>Accommodation</h3>
+            <hr>
+            <p><span class="capital">o</span>ur 375 apartments, with 53 suites, make the fairmont gold floor. They are
+              decorated with tones of blue, inspired in the sea of Copacabana. All the apartments offer generous comfort
+              supplemented by the stunning views of Copacabana beach, the Sugar Loaf or the city.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+<!-- Gallary -->
+<section class="gallary" id="gallary">
+  <div class="container">
+    <div class="title">
+      <h4>Gallary</h4>
+    </div>
+
+    <div class="gallary-container">
+      <div class="row">
+        <div class="col text-center">
+          <h2>Discover with photos</h2>
+          <hr>
+          <p><span class="capital">I</span>n Mariotte you can discover the best feelings through its
+            rooms..suites..floors...spa...resturants...the lobby....swimming pools and the view of the carribian sea.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+
+  </div>
+  <div class="row">
+    <div class=" crop col-lg-3 col-md-6    ">
+      <img class="rounded mx-auto d-block" id="myImg" onclick="clickphoto(this);"
+        src="{% static 'main/images/walking.jpg' %}" alt="swimmimg pool" style="max-width:300px;max-height: 300px;">
+
+
+
+    </div>
+
+
+
+    <div class="crop col-lg-3 col-md-6  ">
+      <img class="rounded mx-auto d-block" id="myImg" onclick="clickphoto(this);"
+        src="{% static 'main/images/view.jpg' %}" alt="view" style="max-width:300px; max-height:300px;">
+
+    </div>
+    <div class="crop col-lg-3 col-md-6  ">
+      <img class="rounded mx-auto d-block" id="myImg" onclick="clickphoto(this);"
+        src="{% static 'main/images/nature.jpg' %}" alt="nature" style="max-width:300px;max-height: 300px;">
+
+
+
+    </div>
+    <div class="crop col-lg-3 col-md-6   ">
+      <img class="rounded mx-auto d-block" id="myImg" onclick="clickphoto(this);"
+        src="{% static 'main/images/swimmin pol.jpg' %}" alt="walking" style="max-width:300px;max-height: 300px;">
+
+
+
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="img01" style="max-width:600px;max-height: 600px;">
+      <div id="caption"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class=" crop col-lg-3 col-md-6  ">
+      <img class="rounded mx-auto d-block" id="myImg" onclick="clickphoto(this);"
+        src="{% static 'main/images/interior1.jpeg' %}" alt="room" style="max-width:300px;max-height: 300px;">
+
+
+
+    </div>
+
+
+
+    <div class="crop col-lg-3 col-md-6  ">
+      <img class="rounded mx-auto d-block" id="myImg" onclick="clickphoto(this);"
+        src="{% static 'main/images/lobby1.jpeg' %}" alt="lobby" style="max-width:300px; max-height:300px;">
+
+    </div>
+    <div class="crop col-lg-3 col-md-6   ">
+      <img class="rounded mx-auto d-block" id="myImg" onclick="clickphoto(this);"
+        src="{% static 'main/images/lobby2.jpeg' %}" alt="lobby" style="max-width:300px;max-height: 300px;">
+
+
+
+    </div>
+    <div class="crop col-lg-3 col-md-6   ">
+      <img class="rounded mx-auto d-block" id="myImg" onclick="clickphoto(this);"
+        src="{% static 'main/images/interior4.jpeg' %}" alt="swimming pool" style="max-width:300px;max-height: 300px;">
+
+
+
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="img01" style="max-width:600px;max-height: 600px;">
+      <div id="caption"></div>
+    </div>
+  </div>
+  </div>
+</section>
+<!-- <section>
+    <div class="row">
+  <div class="col-lg-4 col-md-6  "> 
+    <div class="img-cont">
+      <img id="myImg" onclick="clickphoto(this);" src="../images/sara-dubler-koei_7yytio-unspla.jpg" alt="Snow" style="width:100%;max-width:300px">
+      <div class="overlay"> <div class="bg-text">snow</div></div>
+    </div>
+   
+  </div>
+
+   
+
+  <div class="col-lg-4 col-md-6 ">
+    <div class="img-cont">
+      <img id="myImg"  onclick="clickphoto(this);" src="../images/sara-dubler-koei_7yytio-unspla.jpg" alt="Snow" style="width:100%;max-width:300px">
+      <div class="overlay">  <div class="bg-text">LAND</div></div>
+    </div>
+   
+   </div>
+  <div class="col-lg-4 col-md-6  ">
+    <div class="img-cont">  <img id="myImg" onclick="clickphoto(this);" src="../images/sara-dubler-koei_7yytio-unspla.jpg" alt="Snow" style="width:100%;max-width:300px">
+      <div class="overlay"><div class="bg-text">Sand</div></div></div>
+  
+   
+   </div>
+</div>
+</section> -->
+<!-- Room-section -->
+<section class="rooms text-center" id="rooms">
+  <div class="container">
+    <div class="title">
+      <h4>Rooms</h4>
+    </div>
+    <div class="row">
+      {% for type in types %}
+      <div class="col-md-6 col-lg-4 px-3">
+        <div class="card">
+          <div class="img-con"><img src="{{type.image.url}}" class="card-img-top" alt="room photo"></div>
+          <div class="card-body">
+            <h5 class="card-title">{{type.name}}</h5>
+            <p class="card-text">{{type.desc}}</p>
+            <a href="#" class="btn ">Book now</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- offers -->
+<section class="offers" id="offers">
+  <div class="container">
+    <div class="title">
+      <h4>offers</h4>
+    </div>
+  </div>
+  <div class="container-fluid"></div>
+  <div class="row no-gutters">
+    <div class="col-lg-6">
+    </div>
+    <div class="col-lg-6 ">
+      <div class="offer-content  my-auto text-center">
+        <h3>Special offers for you</h3>
+        <p>Look at the rooms and choose the ones that suit you with amazing offers every month.</p>
+        <button type="button" class="main-bot" data-toggle="modal" data-target="#offerModal">
+          see more
+        </button>
+      </div>
+    </div>
+</section>
+<!-- Modal -->
+<div class="modal fade" id="offerModal" tabindex="-1" aria-labelledby="offerModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="offerModalLabel">offers</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row ">
+            {% for type in offer_types %}
+            <div class="col-md-6  mx-auto text-center">
+              <img src="{{type.image.url}}" alt="room image" onclick="clickphoto(this);" style="max-width: 100%;">
+              <div class="model-offer-content ">
+                <h5> {{type.name}}</h5>
+                <h6>{{type.offer.end_date}}</h6>
+                <p style="text-decoration: line-through;">{{type.price}} $</p>
+                <p>{{type.offer_price}} $</p>
+              </div>
+            </div>
+            {% endfor %}
+            <div class="col-md-6  mx-auto text-center">
+              <img src="{% static 'main/images/bed10.jpg' %}" alt="room image" onclick="clickphoto(this);"
+                style="max-width: 100%;">
+              <div class="model-offer-content ">
+                <h5> Mariotte Gold Junior Suite</h5>
+                <h6>Arpril</h6>
+                <p style="text-decoration: line-through;">1500 $</p>
+                <p>1200 $</p>
+              </div>
+            </div>
+            <div class="col-md-6  mx-auto text-center">
+              <img src="{% static 'main/images/bed11.jpg' %}" alt="room image" onclick="clickphoto(this);"
+                style="max-width: 100%;">
+              <div class="model-offer-content ">
+                <h5> Mariotte Room</h6>
+                  <h6>September</h6>
+                  <p style="text-decoration: line-through;">900 $</p>
+                  <p>800 $</p>
+              </div>
+            </div>
+            <div class="col-md-6  mx-auto text-center">
+              <img src="{% static 'main/images/bed12.jpg' %}" alt="room image" onclick="clickphoto(this);"
+                style="max-width: 100%;">
+              <div class="model-offer-content ">
+                <h5> Deluxe Room</h5>
+                <h6>January</h6>
+                <p style="text-decoration: line-through;">1000 $</p>
+                <p>900 $</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- customers reviews -->
+<section class="customers" id="customers">
+  <div class="container">
+    <div class="title">
+      <h4>customers</h4>
+    </div>
+  </div>
+  <div class="testimonials">
+    <div class="overlay-cust"></div>
+    <div class="container">
+      <div id="carouseltestimonials" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+
+            <div class="carousel-caption ">
+              <img src="{% static 'main/images/user1.jpg' %}" alt="user-photo">
+              <h5>khoudr haji</h5>
+              <p>We Loved it and we have a nice time and experience.</p>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+            </div>
+          </div>
+          {% for review in reviews %}
+          <div class="carousel-item">
+
+            <div class="carousel-caption ">
+              <img src="{% static 'main/images/user5.jpeg' %}" alt="user-photo">
+              <h5>{{review.Account_id.first_name}} {{review.Account_id.last_name}}</h5>
+              <p>{{review.desc}}.</p>
+              {% if review.rating == 1 %}
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              {% endif %}
+
+              {% if review.rating == 2 %}
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              {% endif %}
+
+              {% if review.rating == 3 %}
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              {% endif %}
+
+              {% if review.rating == 4 %}
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              {% endif %}
+
+              {% if review.rating == 5 %}
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+
+          <div class="carousel-item">
+
+            <div class="carousel-caption ">
+              <img src="{% static 'main/images/user5.jpeg' %}" alt="user-photo">
+              <h5>Sarpy mresh</h5>
+              <p>Comfortable Living with its luxury furniture.</p>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+            </div>
+          </div>
+          <div class="carousel-item">
+
+            <div class="carousel-caption ">
+              <img src="{% static 'main/images/user4.jpeg' %}" alt="user-photo">
+              <h5>abd albari alkasser</h5>
+              <p>Nice Place to stay and relax in holidays.</p>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star "></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

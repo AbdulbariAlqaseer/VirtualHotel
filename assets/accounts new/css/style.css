@@ -1,0 +1,383 @@
+.wrapper {
+  position: relative;
+  height: calc(100vh - 92px);
+  width: 100vw;
+  overflow: hidden;
+  
+}
+.wrapper h3 {
+
+  position: absolute;
+  color:white;
+  font-weight: bold;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 5;
+  padding: 22px 0;
+  font-size: 45px;
+  text-align: center;
+  border-bottom: 1px solid #fff;
+}
+@media(max-width:576px) {
+  .wrapper h3 {
+    font-size: 30px;
+  }
+}
+.slideshow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.slideshow--hero {
+  z-index: 3;
+  left: 0;
+  top: 50%;
+  height: 85%;
+  -webkit-transform: translateY(-50%); 
+          transform: translateY(-50%) ;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
+}
+
+.slideshow--hero .slides {
+  position: absolute;
+  left: 0;
+  top: -10%;
+  width: 100vw;
+  height: calc(100vh - 92px);
+  -webkit-animation: 11s slideshow-hero-mobile -3s infinite;
+          animation: 11s slideshow-hero-mobile -3s infinite;
+}
+
+.slideshow--hero .slide1 {
+  background-image: url("../images/adriana-saraceanu-_ixNdO62FSg-unsplash.jpg");
+  -webkit-animation: 20s slides-set-1 -0.1s infinite;
+          animation: 20s slides-set-1 -0.1s infinite;
+}
+
+.slideshow--hero .slide2 {
+  background-image: url("../images/bhumil-chheda-o1lALNEP2BQ-unsplash.jpg");
+  -webkit-animation: 20s slides-set-2 -0.1s infinite;
+          animation: 20s slides-set-2 -0.1s infinite;
+}
+
+.slideshow--hero .slide3 {
+  background-image: url("../images/edvin-johansson-rlwE8f8anOc-unsplash.jpg");
+  -webkit-animation: 20s slides-set-3 -0.1s infinite;
+          animation: 20s slides-set-3 -0.1s infinite;
+}
+
+@media (min-width: 600px) {
+  .slideshow--hero {
+    left: 50%;
+    top: 0;
+    width: 67%;
+    height: 100%;
+    -webkit-transform: translateX(-50%) ;
+            transform: translateX(-50%);
+  }
+  .slideshow--hero .slides {
+    top: 0;
+    left: -25%;
+    height: 100%;
+    -webkit-animation: 11s slideshow-hero -3s infinite;
+            animation: 11s slideshow-hero -3s infinite;
+  }
+}
+
+.slideshow--contrast {
+  z-index: 1;
+  width: 100%;
+  height: 50%;
+  -webkit-transform: none;
+          transform: none;
+}
+
+.slideshow--contrast .slide {
+  -webkit-filter: blur(3px);
+          filter: blur(3px);
+}
+
+.slideshow--contrast--before {
+  left: 0;
+}
+
+.slideshow--contrast--before .slides {
+  width: 100vw;
+}
+
+.slideshow--contrast--after {
+  z-index: 2;
+  left: auto;
+  right: 0;
+}
+
+.slideshow--contrast--after .slides {
+  width: 100vw;
+  left: auto;
+  right: 0;
+}
+
+.slideshow--contrast .slides {
+  -webkit-animation: 14s slideshow-contrast -5s infinite;
+          animation: 14s slideshow-contrast -5s infinite;
+}
+
+.slideshow--contrast .slide1 {
+  background-image:  url("../images/adriana-saraceanu-_ixNdO62FSg-unsplash.jpg");
+  background-image: url("../images/adriana-saraceanu-_ixNdO62FSg-unsplash.jpg");
+  -webkit-animation: 20s slides-set-1 -0.2s infinite;
+          animation: 20s slides-set-1 -0.2s infinite;
+}
+
+.slideshow--contrast .slide2 {
+  background-image:  url("../images/bhumil-chheda-o1lALNEP2BQ-unsplash.jpg");
+  background-image: url("../images/bhumil-chheda-o1lALNEP2BQ-unsplash.jpg");
+  -webkit-animation: 20s slides-set-2 -0.2s infinite;
+          animation: 20s slides-set-2 -0.2s infinite;
+}
+
+.slideshow--contrast .slide3 {
+  background-image: url("../images/edvin-johansson-rlwE8f8anOc-unsplash.jpg");
+  background-image: url("../images/edvin-johansson-rlwE8f8anOc-unsplash.jpg");
+  -webkit-animation: 20s slides-set-3 -0.2s infinite;
+          animation: 20s slides-set-3 -0.2s infinite;
+}
+
+.slideshow--contrast--after {
+  top: auto;
+  bottom: 0;
+}
+
+.slideshow--contrast--after .slides {
+  -webkit-animation: 13s slideshow-contrast -13s infinite;
+          animation: 13s slideshow-contrast -13s infinite;
+}
+
+.slideshow--contrast--after .slide {
+  background-position: right;
+}
+
+.slideshow--contrast--after .slide1 {
+  -webkit-animation: 20s slides-set-1 infinite;
+          animation: 20s slides-set-1 infinite;
+}
+
+.slideshow--contrast--after .slide2 {
+  -webkit-animation: 20s slides-set-2 infinite;
+          animation: 20s slides-set-2 infinite;
+}
+
+.slideshow--contrast--after .slide3 {
+  -webkit-animation: 20s slides-set-3 infinite;
+          animation: 20s slides-set-3 infinite;
+}
+
+@media (min-width: 600px) {
+  .slideshow--contrast {
+    width: 50%;
+    height: 100%;
+  }
+  .slideshow--contrast--after {
+    top: 0;
+    bottom: auto;
+  }
+  .slideshow--contrast--after .slides {
+    width: 50vw;
+  }
+}
+
+.slides,
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+@keyframes slideshow-hero-mobile {
+  0% {
+    -webkit-transform: scale(1) ;
+            transform: scale(1) ;
+  }
+  50% {
+    -webkit-transform: scale(1.05) ;
+            transform: scale(1.05) ;
+  }
+  100% {
+    -webkit-transform: scale(1) ;
+            transform: scale(1) ;
+  }
+}
+
+
+@keyframes slideshow-hero {
+  0% {
+    -webkit-transform: scale(1) ;
+            transform: scale(1) ;
+  }
+  50% {
+    -webkit-transform: scale(1.05) ;
+            transform: scale(1.05);
+  }
+  100% {
+    -webkit-transform: scale(1) ;
+            transform: scale(1) ;
+  }
+}
+
+
+
+@keyframes slideshow-contrast {
+  0% {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+}
+
+
+@keyframes slides-set-1 {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  31% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  34% {
+    opacity: 0;
+    -webkit-transform: translateY(100px);
+            transform: translateY(100px);
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  97% {
+    opacity: 0;
+    -webkit-transform: translateY(-100px);
+            transform: translateY(-100px);
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+
+@keyframes slides-set-2 {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-100px);
+            transform: translateY(-100px);
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  31% {
+    opacity: 0;
+    -webkit-transform: translateY(-100px);
+            transform: translateY(-100px);
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  34% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  64% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  67% {
+    opacity: 0;
+    -webkit-transform: translateY(100px);
+            transform: translateY(100px);
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(100px);
+            transform: translateY(100px);
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+}
+
+
+@keyframes slides-set-3 {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-100px);
+            transform: translateY(-100px);
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  64% {
+    opacity: 0;
+    -webkit-transform: translateY(-100px);
+            transform: translateY(-100px);
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  67% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  97% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(100px);
+            transform: translateY(100px);
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    {% if massege %}
+        <p style="color: green;">{{massege}}</p>
+    {% endif %}
+
+    {% if request.user.is_authenticated and request.user.is_superuser %}
+        <h2><a href="{% url 'add type' %}">Add Room Type</a></h2><br>
+        <h2><a href="{% url 'add maintenance' %}">Add A Room To maintenance</a></h2><br>
+        <h2><a href="{% url 'add room' %}">Add A Room</a></h2><br>
+        <h2><a href="offers/"> view Offers</a></h2><br>
+    {% endif %}
+
+    <p>Room Types Available:</p>
+    <div>
+        {% for roomtype in RoomTypes %}
+            <p>{{roomtype.name}}</p>
+            <p><img src="{{roomtype.image.url}}" alt="room image"></p>
+            <p>price:{{roomtype.price}}</p>
+            <p>size: {{roomtype.size}} square meters</p>
+            <p>beds:{{roomtype.beds}}</p>
+            <p>count:{{roomtype.count}}</p>
+            <p>max Residents: {{roomtype.max_guests}}</p>
+            <p>{{roomtype.desc}}</p>
+            <p><a href="{% url 'update room type' name=roomtype.name %}">Update</a> <a href="{% url 'delete room type' name=roomtype.name %}">Delete</a></p>
+            <hr>
+        {% endfor %}
+    </div>
+    
+</body>
+</html>

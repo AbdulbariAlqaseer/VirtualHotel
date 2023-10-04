@@ -1,0 +1,186 @@
+{% extends 'admin base.html' %}
+{% load static %}
+{% block content %}
+{% if request.user.is_superuser %}
+  <button type="button" name="add-offer" class="btn  " style="background-color: #FFC300; margin:30px " data-toggle="modal"
+    data-target="#accountModal"> Add new account </button>
+  {% for message in messages %}
+    {% if message.tags == 'success' %}
+      <p style="color: green;">{{message}}</p>
+    {% endif %}
+    {% if message.tags == 'error' %}
+      <p style="color: red;">{{message}}</p>
+    {% endif %}
+  {% endfor %}
+  {% if error_message %}
+    <p style="color: red;">{{error_message}}</p>
+  {% endif %}
+<h2 class="text-center"> Search for employee account</h2>
+
+
+<div id="forms" class="forms">
+  <form action="{% url 'show staff' %}" method="GET">
+
+    <div class="form-group">
+
+      <div class="grid">
+        <div class="col-1-3 col-1-3-sm">
+          <div class="controls">
+            <input type="text" id="firstname" name='firstname' class="floatLabel">
+            <label for="firstname" name="firstname">first name</label>
+          </div>
+        </div>
+        <div class="col-1-3 col-1-3-sm">
+          <div class="controls">
+            <input type="text" id="address" name='address' class="floatLabel">
+            <label for="address" name="address">address</label>
+          </div>
+        </div>
+        <div class="col-1-3 col-1-3-sm">
+          <div class="controls">
+            <button type="submit" class="main-bot return-bot" value="Submit" style="color: black;">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<h1 class="text-center">
+
+  ADMINISTRATIVE ACCOUNT DETAILS
+
+</h1>
+
+
+
+<div class="table-responsive">
+  <table class="table table-hover table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>First name </th>
+        <th>Last name</th>
+        <th>Address</th>
+        <th>Email </th>
+        <th>Action</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for member in staff %}
+      <tr>
+        <td>{{member.Account_id.first_name}}</td>
+        <td>{{member.Account_id.last_name}}</td>
+        <td>{{member.Address}}</td>
+        <td>{{member.Account_id.email}}</td>
+        <td>
+          <button type="button" class="btn btn-sm" data-toggle="modal" title="edit account"
+            data-target="#edit{{member.id}}">
+            edit
+          </button>
+          <form action="{% url 'delete staff' id=member.id %}" style="display: inline-block;">{% csrf_token %}
+            <input type="submit" class="btn btn-sm" value="delete">
+          </form>
+
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!--#########################################################-->
+{% for member in staff %}
+<div class="modal fade" id="edit{{member.id}}" tabindex="-1" aria-labelledby="typeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="typeModalLabel" style="color: #C98686;">edit account</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="forms" class="forms">
+          <form action="{% url 'update specific' id=member.id %}" method="POST">{% csrf_token %}
+
+
+
+            <div class="form-group">
+
+              <div class="grid">
+
+                <div class="controls">
+
+                  <input type="text" name="address" id="address" class="floatLabel" value="{{member.Address}}" required>
+                  <label for="address">address</label>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="main-bot" value="Submit">Submit</button>
+                </div>
+
+              </div>
+
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+<!--#####################################################-->
+
+
+<div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="typeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="typeModalLabel" style="color: #C98686;">add account</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="forms" class="forms">
+          <form action="{% url 'show staff' %}" method="POST">{% csrf_token %}
+
+
+
+            <div class="form-group">
+
+              <div class="grid">
+                {% for field in registeration_form %}
+                <div class="controls">
+
+                  {{field}}
+                  {{field.label_tag}}
+
+                  {% for error in field.errors %}
+                  <small style="color: red;">{{error}}</small>
+                  {% endfor %}
+                </div>
+                {% endfor %}
+                <div class="text-center">
+                  <button type="submit" class="main-bot" value="Submit">Submit</button>
+                </div>
+
+              </div>
+
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

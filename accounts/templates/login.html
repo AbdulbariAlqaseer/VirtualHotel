@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form method="post">{% csrf_token %}
+        {% for field in login_form %}
+        <p>
+            {{field.label_tag}}
+            {{field}}
+
+            {% if field.help_text %}
+                <small style="color: grey;">{{field.help_text}}</small>
+            {% endif %}
+            
+        </p>
+        {% endfor %}
+
+        {% for field in login_form %}
+            {% for error in field.errors %}
+                <p style="color:red;">{{error}}</p>
+            {% endfor %}
+        {% endfor %}
+        
+        {% for error in login_form.field.errors %}
+                <small style="color: red;">{{error}}</small>
+            {% endfor %}
+
+            {% if login_form.non_field_errors %}
+                <div style="color:red;">
+                    <p>{{login_form.non_field_errors}}</p>
+                </div>
+            {% endif %}
+
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>

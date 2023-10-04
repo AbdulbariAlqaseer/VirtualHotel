@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2><a href="{% url 'offer home' %}">Return To Offer Home</a></h2>
+    <form action="{% url 'commit offer delete' id=offer.id %}" method="post">{% csrf_token %}
+        <p><b>Name: </b>{{offer.name}}</p>
+        <p><b>Percentage: </b>{{offer.percentage}}</p>
+        <p><b>Start Date: </b>{{offer.start_date}}</p>
+        <p><b>End Date:</b> {{offer.end_date}}</p>
+        <p style="color: red;">Are You Sure You Want To Delete This Offer?</p>
+        <input type="submit" value="Comfirm">
+    </form>
+</body>
+</html>

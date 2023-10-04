@@ -1,0 +1,67 @@
+{% extends 'admin base.html' %}
+{% block content %}
+<h3>Choose the month and the year to show the returns</h3>
+<div id="forms" class="forms">
+    <form action="{% url 'monthly returns' %}" method = "GET">
+
+        <div class="form-group">
+
+            <div class="grid">
+                <div class="col-1-3 col-1-3-sm">
+                    <div class="controls">
+
+
+                        <input type="number" name='month' class="floatLabel" min="1" max="12">
+                        <label for="month" name="month">month</label>
+                    </div>
+                </div>
+                <div class="col-1-3 col-1-3-sm">
+                    <div class="controls">
+                        <input type='number' name='year' class="floatLabel" min="2010">
+                        <label for="year" name="month">year</label>
+                    </div>
+                </div>
+                <div class="col-1-3 col-1-3-sm">
+                    <div class="controls">
+                        <button type="submit" class="main-bot return-bot" value="Submit"
+                            style="color: black;">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+</form>
+{% if winnings %}
+    <h4>Total Returns In This Month:</h4>
+    <p><b>{{winnings}}</b></p>
+{% endif %}
+<div class="table-responsive">
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th> Month</th>
+                <th>Year</th>
+                <th>Returns </th>
+                <th>Discount</th>
+                <th> Total returns</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            {% if month %}
+            <tr>
+                <td>{{month}}</td>
+                <td>{{year}}</td>
+                <td>{{total}}</td>
+                <td>{{discount}}</td>
+                <td>{{winnings}}</td>
+
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

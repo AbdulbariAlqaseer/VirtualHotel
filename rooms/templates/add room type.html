@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p><a href="{% url 'rooms home' %}">Return To Rooms Home</a></p>
+    {% if massege %}
+        <p style="color: red;">{{ massege }}</p>
+    {% endif %}
+    <p>Add Info Then Press Submit</p>
+    <form action="{% url 'add type' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <button>Submit</button>
+        Name:<input type="text" name='name'><br>
+        Image:<input type="file" name='image'><br>
+        Price:<input type="number" name='price'><br>
+        Size:<input type="number" name='size'><br>
+        beds:<input type="number" name='beds'><br>
+        Maximum Guests Allowed:<input type="number" name='max guests'><br>
+        Description:<br>
+        <textarea name="desc" id="" cols="30" rows="10"></textarea>
+        
+    </form>
+</body>
+</html>

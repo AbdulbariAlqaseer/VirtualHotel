@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2><a href="{% url 'view my reviews' %}">Return To My Reviews</a></h2>
+    {% if massege %}
+    <p style="color: red;">{{massege}}</p>
+    {% endif %}
+    <form action="{% url 'commit update' id=review.id %}" method="POST">{% csrf_token %}
+        <input type="submit" value="Submit">
+        <p>Rating: <input type="text" name="rating" value="{{review.rating}}" > </p>
+        <p>Description:</p>
+        <textarea name="desc" id="" cols="50" rows="20"> {{review.desc}} </textarea><br>
+    </form>
+</body>
+</html>

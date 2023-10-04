@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2><a href="{% url 'rooms home' %}">Return To Rooms Home</a></h2><br>
+    <form action="{% url 'commit type delete' name=type.name %}" method="post">{% csrf_token %}
+       
+        <p>{{roomtype.name}}</p>
+        <p><img src="{{type.image.url}}" alt="room image"></p>
+        <p>price:{{type.price}}</p>
+        <p>size: {{type.size}} square meters</p>
+        <p>beds:{{type.beds}}</p>
+        <p>count:{{type.count}}</p>
+        <p>max Residents: {{type.max_guests}}</p>
+        <p>{{type.desc}}</p>
+        <p style="color: red;">Are You Sure You Want To Delete Tis Room Type?</p>
+        <input type="submit" value="Confirm">
+    </form>
+</body>
+</html>

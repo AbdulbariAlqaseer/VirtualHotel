@@ -1,0 +1,135 @@
+{% extends 'admin base.html' %}
+{% block content %}
+<h1 class="text-center">
+
+    REVIEWS
+
+</h1>
+<section class="rooms text-center" id="rooms">
+    <div class="container">
+        <div class="row">
+
+            {% for review in reviews %}
+            <div class="col-md-6  px-3">
+                <div class="card">
+
+                    <div class="card-body " style="min-height: 300px;">
+                        <h1 class="card-title">{{review.Account_id.first_name}} {{review.Account_id.last_name}}</h1>
+                        <hr>
+                        <p>{{review.date}}</p>
+                        <hr>
+                        <p class="card-text">{{review.desc}}</p>
+                        <hr>
+                        {% if review.rating == 1 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if review.rating == 2 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if review.rating == 3 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if review.rating == 4 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if review.rating == 5 %}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        {% endif %}
+
+
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+
+            <div class="col-md-6  px-3">
+                <div class="card">
+
+                    <div class="card-body " style="min-height: 300px;">
+                        <h1 class="card-title">user name</h1>
+                        <hr>
+                        <p>10/3/2010</p>
+                        <hr>
+                        <p class="card-text">Elegant and comfortable suite with balcony and ocean view,
+                            exclusive Gold Lounge Access for gourmet breakfast, cocktails and private
+                            check-in/out.</p>
+                        <hr>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6  px-3">
+                <div class="card">
+
+                    <div class="card-body " style="min-height: 300px;">
+                        <h1 class="card-title">user name</h1>
+                        <hr>
+                        <p>10/3/2010</p>
+                        <hr>
+                        <p class="card-text">Elegant and comfortable suite with balcony and ocean view,
+                            exclusive Gold Lounge Access for gourmet breakfast, cocktails and private
+                            check-in/out.</p>
+                        <hr>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6  px-3">
+                <div class="card">
+
+                    <div class="card-body " style="min-height: 300px;">
+                        <h1 class="card-title">user name</h1>
+                        <hr>
+                        <p>10/3/2010</p>
+                        <hr>
+                        <p class="card-text">Elegant and comfortable suite with balcony and ocean view,
+                            exclusive Gold Lounge Access for gourmet breakfast, cocktails and private
+                            check-in/out.</p>
+                        <hr>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+{% endblock %}

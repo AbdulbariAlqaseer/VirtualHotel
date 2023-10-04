@@ -1,0 +1,148 @@
+{% extends 'admin base.html' %}
+{% block content %}
+<h1 class="text-center">
+
+  ROOMS DETAILS
+</h1>
+
+{% for message in messages %}
+  {% if message.tags == 'success' %}
+    <p style="color: green;">{{message}}</p>
+  {% endif %}
+  {% if message.tags == 'error' %}
+    <p style="color: red;">{{message}}</p>
+  {% endif %}
+{% endfor %}
+
+<div class="table-responsive">
+  <table class="table table-hover table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>Room Number </th>
+        <th>Type</th>
+        <th>Status</th>
+        <th>Price </th>
+        <th>Capacity </th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for room in rooms %}
+      <tr>
+        <td>{{room.id}}</td>
+        <td>{{room.type.name}}</td>
+        <td>{{room.stateName}}</td>
+        <td>{{room.type.price}} $</td>
+        <td> {{room.type.max_guests}} Person </td>
+        <td style="width: 100px">
+          {% if room.stateName == "Empty" %}
+          <button type="button" class="btn btn-sm" data-toggle="modal" title="maintain a room"
+            data-target="#maintain{{room.id}}">
+            maintain
+          </button>
+          {% else %}
+           --------
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div class="modal fade" id="maintain1" tabindex="-1" aria-labelledby="typeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="typeModalLabel" style="color: #C98686;">maintain a room</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="forms" class="forms">
+          <form action="">
+
+
+
+            <div class="form-group">
+
+              <div class="grid">
+
+                <div class="controls">
+
+                  <input type="date" name="firstdate" id="firstdate" class="floatLabel">
+                  <label for="lastdate">first date</label>
+                </div>
+
+
+                <div class="controls">
+                  <input type="date" name="lastdate" id="lastdate" class="floatLabel">
+                  <label for="lastdate">last date</label>
+
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="main-bot" value="Submit">Submit</button> </div>
+
+              </div>
+
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% for room in rooms %}
+<div class="modal fade" id="maintain{{room.id}}" tabindex="-1" aria-labelledby="typeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="typeModalLabel" style="color: #C98686;">maintain a room</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="forms" class="forms">
+          <form action="{% url 'maintenance' id=room.id %}" method="POST">{% csrf_token %}
+
+
+
+            <div class="form-group">
+
+              <div class="grid">
+
+                <div class="controls">
+
+                  <input type="date" name="firstdate" id="firstdate" class="floatLabel" required>
+                  <label for="lastdate">first date</label>
+                </div>
+
+
+                <div class="controls">
+                  <input type="date" name="lastdate" id="lastdate" class="floatLabel" required>
+                  <label for="lastdate">last date</label>
+
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="main-bot" value="Submit">Submit</button> </div>
+
+              </div>
+
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

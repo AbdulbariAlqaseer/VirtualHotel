@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2><a href="{% url 'add offer' %}">Add Offer</a></h2>
+    {% if massege %}
+        <h2 style="color: green;">{{ massege }}</h2>
+    {% endif %}
+    <table border="2px">
+        {% for offer in offers %}
+            <tr>
+                <td>{{offer.name}} </td>
+                <td>{{offer.percentage}} </td>
+                <td>{{offer.start_date}} </td>
+                <td> {{offer.end_date}} </td>
+                <td><a href="{% url 'update offer' id=offer.id %}">update</a></td>
+                <td><a href="{% url 'delete offer' id=offer.id %}">delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+</html>

@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'account/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'account/form_test.css' %}">
+    <script src="{% static 'account/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'account/form_test.js' %}"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+          
+          <div class="signup">Sign Up</div>
+          <div class="login">Log In</div>
+          
+           <div class="signup-form">
+               {% if massege %}
+                <p style="color: red;">{{ massege }}</p>
+               {% endif %}
+            <form method="post">{%csrf_token%}
+                {% for field in registeration_form %}
+                <p>
+                    {{field.label_tag}}
+                    {{field}}
+        
+                    <!--{% if field.help_text %}
+                        <small style="color: grey;">{{field.help_text}}</small>
+                    {% endif %}-->
+        
+                    {% for error in field.errors %}
+                        <small style="color: red;">{{error}}</small>
+                    {% endfor %}
+                </p>
+                {% endfor %}
+                <button type="submit">Register</button>
+            </form>
+           </div>
+          
+          <div class="login-form">
+            {% if massege %}
+            <p style="color: red;">{{ massege }}</p>
+           {% endif %}
+            <form method="post">{% csrf_token %}
+                {% for field in login_form %}
+                <p>
+                    {{field.label_tag}}
+                    {{field}}
+        
+                    {% if field.help_text %}
+                        <small style="color: grey;">{{field.help_text}}</small>
+                    {% endif %}
+                    
+                </p>
+                {% endfor %}
+        
+                {% for field in login_form %}
+                    {% for error in field.errors %}
+                        <p style="color:red;">{{error}}</p>
+                    {% endfor %}
+                {% endfor %}
+                
+                {% for error in login_form.field.errors %}
+                        <small style="color: red;">{{error}}</small>
+                    {% endfor %}
+        
+                    {% if login_form.non_field_errors %}
+                        <div style="color:red;">
+                            <p>{{login_form.non_field_errors}}</p>
+                        </div>
+                    {% endif %}
+        
+                <button type="submit">Login</button>
+              <span><a href="#">I forgot my username or password.</a></span>
+           </div>
+          
+        </div>
+      </div>
+    
+    
+    
+    
+    
+    
+    <!-- By Coding Market -->
+    <div class="youtube">
+      <a href="https://www.youtube.com/channel/UCtVM2RthR4aC6o7dzySmExA" target="_blank">by coding market</a>
+    </div>
+</body>
+</html>
+

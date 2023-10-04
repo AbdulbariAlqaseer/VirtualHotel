@@ -1,0 +1,577 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="add-review text-center" style="margin-top: 90px;">
+    <div class="container">
+        <h3>SHOW ALL YOUR PERMANENT RESERVATION</h3>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Room type </th>
+                        <th>Arrive</th>
+                        <th>Leave</th>
+                        <th>Guests </th>
+                        <th>Services </th>
+                        <th>State</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for perma in permas %}
+                    <tr>
+                        <td>{{perma.room.type.name}}</td>
+                        <td>{{perma.start_date}}</td>
+                        <td>{{perma.end_date}}</td>
+                        <td>{{perma.guests}}</td>
+                        <td>
+                            {% if perma.service.all.count > 0 %}
+                            <div class="dropdown">
+                                <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    addition services
+                                </button>
+                                
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    {% for service in perma.service.all %}
+                                    <p class="dropdown-item">{{service.name}}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% else %}
+                            -----
+                            {% endif %}
+                            
+                        </td>
+                        <td>{{perma.active}}</td>
+                        <td>
+                            <!-- the button for extend -->
+                            {% if perma.active %}
+                            <button type="button" class="btn btn-sm" data-toggle="modal" title="edit account"
+                                data-target="#ex{{perma.id}}">
+                                extend
+                            </button>
+                            {% endif %}
+                            <!-- the button for extend -->
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+        <h3 style="margin-top: 30px;">SHOW ALL YOUR TEMPORARY RESERVATION</h3>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Room type </th>
+                        <th>Arrive</th>
+                        <th>Leave</th>
+                        <th>Guests </th>
+                        <th>Services </th>
+                        <th>State</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for temp in temps %}
+                    <tr>
+                        <td>{{temp.room_type.name}}</td>
+                        <td>{{temp.start_date}}</td>
+                        <td>{{temp.end_date}}</td>
+                        <td>{{temp.guests}}</td>
+                        <td>
+                            {% if temp.service.all.count > 0 %}
+                            <div class="dropdown">
+                                <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    addition services
+                                </button>
+                                
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    {% for service in temp.service.all %}
+                                    <p class="dropdown-item">{{service.name}}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% else %}
+                            -----
+                            {% endif %}
+                            
+                        </td>
+                        <td>{{temp.active}}</td>
+                        
+                        <td>
+                            {% if temp.active %}
+                            <!-- the button for update -->
+                            <button type="button" class="btn btn-sm" data-toggle="modal" title="edit account"
+                                data-target="#update{{temp.id}}">
+                                update
+                            </button>
+                            <!-- the button for update -->
+                            <!-- the input for delete -->
+                            <form action="{% url 'delete reservation' id=temp.id %}" style="display: inline-block;" method="POST">{% csrf_token %}
+                                <input type="submit" class="btn btn-sm" value="delete">
+                            </form>
+                            <!-- the input for delete -->
+                            {% endif %}
+                        </td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+{% for perma in permas %}
+    {% if perma.active %}
+    <!-- extend div -->
+<div class="modal fade" id="ex{{perma.id}}" tabindex="-1" aria-labelledby="typeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="typeModalLabel" style="color: #C98686;">extend the reservation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="forms" class="forms">
+                    <form action="{% url 'extend reservation' id=perma.id %}" method="POST">{% csrf_token %}
+
+
+
+                        <div class="form-group">
+
+                            <div class="grid">
+
+                                <div class="controls">
+
+                                    <input type="date" name="leave" id="leave" class="floatLabel">
+                                    <label for="leave">leave</label>
+                                </div>
+                                <div class="text-center">
+                                    <input type="submit" class="main-bot" value="submit"> </div>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+    {% endif %}
+{% endfor %}
+<!-- extend div -->
+<div class="modal fade" id="ex1" tabindex="-1" aria-labelledby="typeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="typeModalLabel" style="color: #C98686;">extend the reservation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="forms" class="forms">
+                    <form action="">
+
+
+
+                        <div class="form-group">
+
+                            <div class="grid">
+
+                                <div class="controls">
+
+                                    <input type="date" name="leave" id="leave" class="floatLabel">
+                                    <label for="leave">leave</label>
+                                </div>
+                                <div class="text-center">
+                                    <input type="submit" class="main-bot" value="submit"> </div>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- extend div -->
+
+<div class="modal fade" id="ex2" tabindex="-1" aria-labelledby="typeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="typeModalLabel" style="color: #C98686;">extend the reservation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="forms" class="forms">
+                    <form action="">
+
+
+
+                        <div class="form-group">
+
+                            <div class="grid">
+
+                                <div class="controls">
+
+                                    <input type="date" name="leave" id="leave" class="floatLabel">
+                                    <label for="leave">leave</label>
+                                </div>
+                                <div class="text-center">
+                                    <input type="submit" class="main-bot" value="submit"> </div>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% for temp in temps %}
+{% if temp.active %}
+<!-- update div -->
+<div class="modal fade" id="update{{temp.id}}" tabindex="-1" aria-labelledby="typeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="typeModalLabel" style="color: #C98686;">update the reservation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="forms" class="forms">
+                    <form action="{% url 'update reservation' id=temp.id %}" method="POST">{% csrf_token %}
+
+
+
+                        <div class="form-group">
+
+                            <div class="grid">
+
+
+                                <div class="controls ">
+                                    <!-- select room type -->
+                                    <select  name = "type" class="floatLabel" style="width: 65%;">
+                                        {% for type in types %}
+                                        <option value="{{type.name}}">{{type.name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label for="room-type">Room Type</label>
+                                </div>
+                                <div class="controls">
+
+                                    <input type="date" required name="firstdate" id="firstdate" class="floatLabel" value="{{temp.start_date.date.year}}-{% if temp.start_date.date.month < 10 %}0{% endif %}{{temp.start_date.date.month}}-{% if temp.start_date.date.day < 10 %}0{% endif %}{{temp.start_date.date.day}}">
+                                    <label for="firstdate">Arrive</label>
+                                </div>
+
+
+                                <div class="controls">
+                                    <input type="date" required name="lastdate" id="lastdate" class="floatLabel" value="{{temp.end_date.date.year}}-{% if temp.end_date.date.month < 10 %}0{% endif %}{{temp.end_date.date.month}}-{% if temp.end_date.date.day < 10 %}0{% endif %}{{temp.end_date.date.day}}">
+                                    <label for="lastdate">leave</label>
+
+                                </div>
+
+
+                                <div class="controls ">
+                                    <input type="number" name="guests" value="{{temp.guests}}" min="1" max="10" id="guests"
+                                        class="floatLabel" >
+                                    <label for="guests">Guests</label>
+                                </div>
+
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border">Additional Services</legend>
+                                    <div class="control-group">
+                                        <div class="add-services">
+                                            {% for ser in services %}
+                                            <div class="form-check form-check-inline">
+
+                                                <label class=" contain" for="inlineCheckbox{{ser.id}}">
+                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ser.id}}"
+                                                       name='{{ser.name}}' {% if ser in temp.service.all %} checked {% endif %}>
+                                                    <span class="checkmark"></span>
+                                                    {{ser.name}}</label>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="main-bot" value="Submit">Submit</button> </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+<!-- update div -->
+<div class="modal fade" id="update1" tabindex="-1" aria-labelledby="typeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="typeModalLabel" style="color: #C98686;">update the reservation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="forms" class="forms">
+                    <form action="">
+
+
+
+                        <div class="form-group">
+
+                            <div class="grid">
+
+
+                                <div class="controls ">
+                                    <!-- select room type -->
+                                    <select class="floatLabel" style="width: 65%;">
+                                        <option value="Mariotte Gold Junior Suite">Mariotte Gold Junior Suite
+                                        </option>
+                                        <option value="Mariotte Gold  Suite">Mariotte Gold Suite</option>
+                                        <option value="Deluxe Room">Deluxe Room</option>
+                                    </select>
+                                    <label for="room-type">Room Type</label>
+                                </div>
+                                <div class="controls">
+
+                                    <input type="date" required name="firstdate" id="firstdate" class="floatLabel">
+                                    <label for="firstdate">Arrive</label>
+                                </div>
+
+
+                                <div class="controls">
+                                    <input type="date" required name="lastdate" id="lastdate" class="floatLabel">
+                                    <label for="lastdate">leave</label>
+
+                                </div>
+
+
+                                <div class="controls ">
+                                    <input type="number" name="guests" value="1" min="1" max="10" id="guests"
+                                        class="floatLabel">
+                                    <label for="guests">Guests</label>
+                                </div>
+
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border">Additional Services</legend>
+                                    <div class="control-group">
+                                        <div class="add-services">
+                                            <div class="form-check form-check-inline">
+
+                                                <label class=" contain" for="inlineCheckbox1">
+                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                                                        value="Laundry">
+                                                    <span class="checkmark"></span>
+                                                    Laundry</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+
+                                                <label class=" contain" for="inlineCheckbox2">
+                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
+                                                        value="Hadicapped">
+                                                    <span class="checkmark"></span>
+                                                    Handicapped</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+
+                                                <label class=" contain" for="inlineCheckbox3">
+                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
+                                                        value="Complimentary tea & coffee making facilities">
+                                                    <span class="checkmark"></span>
+                                                    Complimentary tea & coffee making facilities</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+
+                                                <label class=" contain" for="inlineCheckbox4">
+                                                    <input class="form-check-input" style="font-size: small;"
+                                                        type="checkbox" id="inlineCheckbox4"
+                                                        value="Nourish healthy In Room Bar">
+                                                    <span class="checkmark"></span>
+                                                    Nourish healthy In Room Bar</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="main-bot" value="Submit">Submit</button> </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- update div -->
+
+<div class="modal fade" id="update2" tabindex="-1" aria-labelledby="typeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="typeModalLabel" style="color: #C98686;">update the reservation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="forms" class="forms">
+                    <form action="">
+
+
+
+                        <div class="form-group">
+
+                            <div class="grid">
+
+
+                                <div class="controls ">
+                                    <!-- select room type -->
+                                    <select class="floatLabel" style="width: 65%;">
+                                        <option value="Mariotte Gold Junior Suite">Mariotte Gold Junior Suite
+                                        </option>
+                                        <option value="Mariotte Gold  Suite">Mariotte Gold Suite</option>
+                                        <option value="Deluxe Room">Deluxe Room</option>
+                                    </select>
+                                    <label for="room-type">Room Type</label>
+                                </div>
+                                <div class="controls">
+
+                                    <input type="date" required name="firstdate" id="firstdate" class="floatLabel">
+                                    <label for="firstdate">Arrive</label>
+                                </div>
+
+
+                                <div class="controls">
+                                    <input type="date" required name="lastdate" id="lastdate" class="floatLabel">
+                                    <label for="lastdate">leave</label>
+
+                                </div>
+
+
+                                <div class="controls ">
+                                    <input type="number" name="guests" value="1" min="1" max="10" id="guests"
+                                        class="floatLabel">
+                                    <label for="guests">Guests</label>
+                                </div>
+
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border">Additional Services</legend>
+                                    <div class="control-group">
+                                        <div class="add-services">
+                                            <div class="form-check form-check-inline">
+
+                                                <label class=" contain" for="inlineCheckbox1">
+                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                                                        value="Laundry">
+                                                    <span class="checkmark"></span>
+                                                    Laundry</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+
+                                                <label class=" contain" for="inlineCheckbox2">
+                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
+                                                        value="Hadicapped">
+                                                    <span class="checkmark"></span>
+                                                    Handicapped</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+
+                                                <label class=" contain" for="inlineCheckbox3">
+                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
+                                                        value="Complimentary tea & coffee making facilities">
+                                                    <span class="checkmark"></span>
+                                                    Complimentary tea & coffee making facilities</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+
+                                                <label class=" contain" for="inlineCheckbox4">
+                                                    <input class="form-check-input" style="font-size: small;"
+                                                        type="checkbox" id="inlineCheckbox4"
+                                                        value="Nourish healthy In Room Bar">
+                                                    <span class="checkmark"></span>
+                                                    Nourish healthy In Room Bar</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="main-bot" value="Submit">Submit</button> </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% for message in messages %}
+  {% if message.tags == 'success' %}
+    <div class="message success" id="message">
+    <div class="mes-info text-center ">
+        <h5>success</h5>
+        <p>{{message}}</p>
+    </div>
+    <span class="close" onclick="closeMessage();">&times;</span>
+    </div>
+  {% endif %}
+  {% if message.tags == 'error' %}
+    <div class="message fail" id="message">
+        <div class="mes-info text-center ">
+        <h5>fail</h5>
+        <p>{{message}}</p>
+        </div>
+        <span class="close" onclick="closeMessage();">&times;</span>
+    </div>
+  {% endif %}
+{% endfor %}
+
+{% endblock %}

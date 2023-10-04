@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>staff</title>
+    <h1>This Is The Staff Page</h1>
+</head>
+<!-- This Page Just Shows The Current Staff Press Either Delete To Delete Staff Or Update To Update Staff-->
+<body>
+    <p><a href="{% url 'home' %}">Return Home</a></p>
+    <p>The Current Staff Are:</p>
+    <table>
+        {% for member in staff %}
+            <tr>
+                <td>
+                    {{member.first_name}}
+                </td>
+                <td>
+                    {{member.last_name}}
+                </td>
+                <td>
+                    {{member.email}}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="{% url 'update staff' %}"> Update Staff </a> <br> <a href="{% url 'show delete' %}"> Delete Staff </a></p>
+</body>
+</html>

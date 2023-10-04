@@ -1,0 +1,334 @@
+{% extends 'admin base.html' %}
+{% block content %}
+<div class="col-sm-12 text-center ">
+    <button type="button" name="add-offer" class="btn  " style="background-color: #FFC300; margin:30px "
+        data-toggle="modal" data-target="#reservationModal">Add permenant reservation</button>
+</div>
+<div class="col-sm-12 text-center ">
+    <h2 class="text-center"> Search for reservation</h2>
+
+
+    <div id="forms" class="forms">
+        <form action="{% url 'books admin' %}" method = "GET">
+
+            <div class="form-group">
+
+                <div class="grid">
+                    <div class="col-1-3 col-1-3-sm">
+                        <div class="controls">
+                            <input type="email" name="email" id="code" class="floatLabel">
+                            <label for="code">email for temp</label>
+                        </div>
+                    </div>
+                    <div class="col-1-3 col-1-3-sm">
+                        <div class="controls">
+                            <input type="text" name="number" id="passport" class="floatLabel">
+                            <label for="passport">passport for permenant</label>
+                        </div>
+                    </div>
+                    <div class="col-1-3 col-1-3-sm">
+                        <div class="controls">
+                            <button type="submit" class="main-bot return-bot" value="Submit"
+                                style="color: black;">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+<div class="col-sm-12 text-center ">
+    <h2 class="text-center"> confirm reservation</h2>
+
+
+    <div id="forms" class="forms">
+        <form action="{% url 'confirm res' %}" method = "POST">{% csrf_token %}
+
+            <div class="form-group">
+
+                <div class="grid">
+                    <div class="col-1-3 col-1-3-sm">
+                        <div class="controls">
+                            <input type="text" name="code" id="code" class="floatLabel">
+                            <label for="code"># code</label>
+                        </div>
+                    </div>
+                    <div class="col-1-3 col-1-3-sm">
+                        <div class="controls">
+                            <input type="text" name="num_pass" id="passport" class="floatLabel">
+                            <label for="passport">passport</label>
+                        </div>
+                    </div>
+                    <div class="col-1-3 col-1-3-sm">
+                        <div class="controls">
+                            <button type="submit" class="main-bot return-bot" value="Submit"
+                                style="color: black;">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+<div class="col-sm-12 text-center ">
+    <h3>Choose the month and the year to show the reservations</h3>
+    <div id="forms" class="forms">
+        <form action="{% url 'books admin' %}" method = "GET">{% csrf_token %}
+
+            <div class="form-group">
+
+                <div class="grid">
+                    <div class="col-1-3 col-1-3-sm">
+                        <div class="controls">
+
+
+                            <select class="floatLabel" name="month">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+
+                            <label for="month" name="month">month</label>
+                        </div>
+                    </div>
+                    <div class="col-1-3 col-1-3-sm">
+                        <div class="controls">
+                            <select class="floatLabel" name="year">
+                                <option value="2000">2000</option>
+                                <option value="2001">2001</option>
+                                <option value="2002">2002</option>
+                                <option value="2003">2003</option>
+                                <option value="2004">2004</option>
+                                <option value="2005">2005</option>
+                                <option value="2006">2006</option>
+                                <option value="2007">2007</option>
+                                <option value="2008">2008</option>
+                                <option value="2009">2009</option>
+                                <option value="2010">2010</option>
+                                <option value="2011">2011</option>
+                                <option value="2012">2012</option>
+                                <option value="2013">2013</option>
+                                <option value="2014">2014</option>
+                                <option value="2015">2015</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                            </select>
+
+                            <label for="year">year</label>
+                        </div>
+                    </div>
+                    <div class="col-1-3 col-1-3-sm">
+                        <div class="controls">
+                            <button type="submit" class="main-bot return-bot" value="Submit"
+                                style="color: black;">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<h1 class="text-center">
+
+    RESERVATION DETAILS
+
+</h1>
+
+
+<div class="table-responsive">
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>First name </th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>Room type </th>
+                <th>Arrive</th>
+                <th>Leave</th>
+                <th>Guests</th>
+                <th>State </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t,p in zip %}
+            {% if t %}
+            <tr>
+                <td>{{t.customer.Account_id.first_name}}</td>
+                <td>{{t.customer.Account_id.last_name}}</td>
+                <td>{{t.customer.Account_id.email}}</td>
+
+                <td>
+                    {{t.room_type.name}}
+                </td>
+                <td>{{t.start_date}}</td>
+                <td>{{t.end_date}}</td>
+                <td>{{t.guests}}</td>
+                <th>Temporary </th>
+            </tr>
+            {% endif %}
+            {% if p %}
+            <tr>
+                {% if p.account %}
+                <td>{{p.account.first_name}}</td>
+                <td>{{p.account.last_name}}</td>
+                <td>{{p.account.email}}</td>
+                {% else %}
+                <td>{{p.visitor.first_name}}</td>
+                <td>{{p.visitor.last_name}}</td>
+                <td>{{p.visitor.email}}</td>
+                {% endif %}
+                <td>
+                    {{p.room.type.name}}
+                </td>
+                <td>{{p.start_date}}</td>
+                <td>{{p.end_date}}</td>
+                <td>{{p.guests}}</td>
+                <th>Permenant </th>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="typeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="typeModalLabel" style="color: #C98686;">add permenant reservation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="forms" class="forms">
+                    <form action="{% url 'add perma reservation' %}" method = "POST">{% csrf_token %}
+
+
+
+                        <div class="form-group">
+
+                            <div class="grid">
+
+                                <div class="controls">
+                                    <input type="text" required name="first_name" id="firstname" class="floatLabel">
+                                    <label for="firstname">first name</label>
+                                </div>
+                                <div class="controls">
+                                    <input type="text" required name="last_name" id="lastname" class="floatLabel">
+                                    <label for="lastname">last name</label>
+                                </div>
+                                <div class="controls">
+
+                                    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email"
+                                        id="email" class="floatLabel">
+                                    <label for="email">email</label>
+                                </div>
+                                <div class="controls">
+                                    <input type="text" required name="num_pass" id="num_pass" class="floatLabel">
+                                    <label for="num_pass">passboard number</label>
+                                </div>
+                                <div class="controls">
+                                    <input type="date" required name="date_birth" id="birthdate" class="floatLabel">
+                                    <label for="birthdate">birthdate</label>
+
+                                </div>
+                                <div class="controls ">
+                                    <!-- select room type -->
+                                    <select class="floatLabel" style="width: 65%;" name = "type">
+                                        {% for type in types %}
+                                        <option value="{{type.name}}" >{{type.name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label for="room-type">Room Type</label>
+                                </div>
+                                <div class="controls">
+
+                                    <input type="date" required name="date1" id="firstdate" class="floatLabel">
+                                    <label for="firstdate">Arrive</label>
+                                </div>
+
+
+                                <div class="controls">
+                                    <input type="date" required name="date2" id="lastdate" class="floatLabel">
+                                    <label for="lastdate">leave</label>
+
+                                </div>
+
+
+                                <div class="controls ">
+                                    <input type="number" name="guests" value="1" min="1" max="10" id="guests"
+                                        class="floatLabel">
+                                    <label for="guests">Guests</label>
+                                </div>
+
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border">Additional Services</legend>
+                                    <div class="control-group">
+                                        <div class="add-services">
+                                            {% for ser in services %}
+                                            <div class="form-check form-check-inline">
+                                                <label class=" contain" for="inlineCheckbox{{ser.id}}">
+                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ser.id}}"
+                                                        value="{{ser.name}}" name="{{ser.name}}">
+                                                    <span class="checkmark"></span>
+                                                    {{ser.name}}</label>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="main-bot" value="Submit">Submit</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% for message in messages %}
+  {% if message.tags == 'success' %}
+    <div class="message success" id="message">
+    <div class="mes-info text-center ">
+        <h5>success</h5>
+        <p>{{message}}</p>
+    </div>
+    <span class="close" onclick="closeMessage();">&times;</span>
+    </div>
+  {% endif %}
+  {% if message.tags == 'error' %}
+    <div class="message fail" id="message">
+        <div class="mes-info text-center ">
+        <h5>fail</h5>
+        <p>{{message}}</p>
+        </div>
+        <span class="close" onclick="closeMessage();">&times;</span>
+    </div>
+  {% endif %}
+{% endfor %}
+
+{% endblock %}

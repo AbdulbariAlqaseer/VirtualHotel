@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mariotte Hotel</title>
+    <link rel="stylesheet" href="{% static 'main/css/log-re.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/all.min.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'main/images/hotel-removebg-preview.ico' %}">
+</head>
+<body >
+    <img src="{% static 'main/images/photo_2021-08-30_10-23-55.jpg' %}" alt="">
+       
+<div class="wow fadeInRightBig box1">
+<div class="container">
+    
+<form action="{% url 'register' %}" method="POST">{% csrf_token %}
+    
+    <h1>register</h1>
+    {% if massege %}
+        <p style="color: red;">{{ massege }}</p>
+    {% endif %}
+    
+    {% for field in registeration_form %}
+    <div class="cont">
+            {{field.label_tag}}
+            {{field}}
+    </div>
+            <!--{% if field.help_text %}
+                <small style="color: grey;">{{field.help_text}}</small>
+            {% endif %}-->
+
+            {% for error in field.errors %}
+                <small style="color: red;">{{error}}</small>
+            {% endfor %}
+        
+        {% endfor %}
+    <input type="submit" class="main-bot" value="submit">
+   <a href="{% url 'login' %}"> You Have an Account?</a>
+</form>
+</div>
+
+        </div>
+    <script src="{% static 'main/js/wow.min.js' %}"></script>
+    <script>
+        new WOW().init();
+        </script>
+</body>
+</html>

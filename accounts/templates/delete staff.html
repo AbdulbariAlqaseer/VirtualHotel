@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<!-- In This File We Need To Take The id Of The Staff We Need To Delete: (We Will Only Allow One At A Time)-->
+
+<body>
+
+    <h2><a href="{% url 'show staff' %}">Return To Staff</a></h2>
+
+    <form action="{% url 'show delete' %}" method="GET">
+        <input type="search" name="staff email" placeholder="Search For Staff Email">
+        <input type="submit" value="Search">
+    </form>
+
+    {% if massege %}
+        <p style="color: green;">{{massege}}</p>
+    {% endif %}
+
+    {% if staff %}
+        <form action="{% url 'delete staff' id=staff.id %}" method="post">{% csrf_token %}
+            <b>Staff ID: </b> <section id="staff id">{{staff.id}}</section><br>
+            <b>Staff Name: </b> <section class="staff name">{{staff.Account_id.first_name}}</section><br>
+            <b>Staff Last Name: </b><section class="staff last name">{{staff.Account_id.last_name}}</section><br>
+            <b>E-mail: </b><section class="staff email">{{staff.Account_id.email}}</section><br>
+            <b>Staff Address: </b><section class="staff address">{{staff.Address}}</section><br>
+            <strong style="color: red;">Are You Sure You Want To Delete This Staff Member?</strong><br>
+            <input type="submit" value="Confirm">
+        </form>
+    {% endif %}
+
+
+</body>
+</html>

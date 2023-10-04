@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <h1><a href="{% url 'test' %}"> Run A LOGIN TEST</a></h1>
+    <!--<h1><a href="{% url 'test' %}"> Run A LOGIN TEST 1</a></h1>
+    <h1><a href="{% url 'test' %}"> Run A LOGIN TEST 2</a></h1>
+    <h1><a href="{% url 'test' %}"> Run A LOGIN TEST 3</a></h1>-->
+
+    {% if request.user.is_authenticated %}
+        <P>Hello, {{request.user.first_name}} | <a href="{% url 'logout' %}">Logout</a></P>
+        <p><a href="rooms/">View Rooms</a></p>
+    {% else %}
+        <!--<P><a href="{% url 'register' %}">Register</a> |<a href="{% url 'login' %}">Login</a></P>-->
+        <p><a href="{% url 'verificate' %}"> Signup </a></p>
+    {% endif %}
+
+    {% if request.user.is_authenticated and request.user.is_superuser %}
+        <p><a href="{% url 'add staff' %}"> Add New Staff </a></p>
+    {% endif %}
+
+        <p><a href="{% url 'reviews home' %}"> Reviews </a></p>
+
+</head>
+
+<!-- In This Page You Have To Login With The Manager: -->
+<!-- The Manager E-Mail:  -->
+<!-- The Manager Password:  -->
+
+<body>
+    <h1>THIS IS THE HOME PAGE</h1>
+    <p>Here is where you put stuff that should be in the body of your website.</p>
+    {% if request.user.is_authenticated and request.user.is_superuser %}
+        <p><a href="{% url 'show staff' %}"> View Staff </a></p>
+    {% endif %}
+    <h3>Registered Users:</h3>
+
+    {% for account in accounts %}
+        <p>{{account}}</p>
+    {% endfor %}
+</body>
+</html>

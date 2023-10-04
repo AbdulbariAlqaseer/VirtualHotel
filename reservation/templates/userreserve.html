@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mariotte Hotel</title>
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/all.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/> 
+    <link rel="stylesheet" href="../css/animate.css"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="../images/hotel-removebg-preview.ico">
+</head>
+<body  style=" background-color: #f7f7f7;"> 
+    <div class=" mynav ">
+        <nav class="navbar navbar-expand-lg navbg fixed-top  bl-ac ">
+          <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="../images/hotel-removebg-preview.png" alt="" width="100px" height="100px">
+          </a>
+          <button class="navbar-toggler " type="button"  data-toggle="collapse" data-target="#navbarResponsive"
+          aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="menu-btn">
+              <div class="menu-btn__burger"></div>
+            </div>
+          </button>
+      
+          <div class="d-lg-block d-none bl  ">
+            <div class="collapse navbar-collapse align-self-end flex-wrap w-auto " id="navbarNav">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item ">
+                  <a id="nav-link " class="nav-link1" href="home.html">Home </a>
+                </li>
+                <li class="nav-item">
+                  <a id="nav-link" class="nav-link2" href="booking.html">Booking</a>
+                </li>
+                <li class="nav-item">
+                  <a id="nav-link"class="nav-link4" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#"> 
+                   <i class="fas fa-user"></i></a>
+                  </li>
+                  <li class="nav-item"><input  type="checkbox" id="toggle1" />
+                    <label id="lab1" for="toggle1"></label>
+                   </li>
+              </ul>
+            </div>
+          </div>
+          <div class="collapse navbar-collapse bl-ac " id="navbarResponsive">
+            <ul class="navbar-nav ml-auto text-center">
+              <li class="nav-item ">
+                <a id="nav-link py-0" class="nav-link1-collapse" href="#">Home </a>
+              </li>
+              <li class="nav-item">
+                <a id="nav-link py-0" class="nav-link2-collapse" href="#">Booking</a>
+              </li>
+              <li class="nav-item">
+                <a id="nav-link py-0" class="nav-link3-collapse" href="#">Rooms</a>
+              </li>
+              <li class="nav-item">
+                <a id="nav-link py-0" class="nav-link4-collapse" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <div class="row"></div>
+                <div class="col-6 float-left" style="border-right: 1px solid #FFC300;"><a href="#"> 
+                  <i class="fas fa-user"></i></a></div>
+                <div class="col-6 float-right"><input type="checkbox" id="toggle2" />
+                  <label id="lab2" for="toggle2"></label></div>
+                </li>
+            </ul>
+          </div> 
+        </div>
+        </nav>
+      </div> 
+     
+      <section class="add-review text-center" style="margin-top: 90px;">
+<div class="container">
+    <h3>SHOW ALL YOUR PERMANENT RESERVATION</h3>
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Room type </th>
+            <th>Arrive</th>
+            <th>Leave</th>
+            <th>Guests </th>
+            <th>Services </th>
+            <th>State</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>deluxe</td>
+            <td>17/1/2020</td>
+            <td>18/1/2020</td>
+            <td>4</td>
+            <td> <div class="dropdown">
+              <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown button
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <p class="dropdown-item">Action</p>
+                  <p class="dropdown-item">Another action</p>
+                  <p class="dropdown-item">Something else here</p>
+              </div>
+          </div> </td>
+          <td>active</td>
+            <td >
+                      <!-- the button for extend -->
+                      <button type="button" class="btn btn-sm" data-toggle="modal" title= "edit account"data-target="#ex1">
+                        extend
+                      </button>
+              <!-- the button for extend -->
+            </td>
+          </tr>
+          <tr>
+            <td>deluxe</td>
+            <td>17/1/2020</td>
+            <td>18/1/2020</td>
+            <td>4</td>
+            <td> <div class="dropdown">
+              <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown button
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <p class="dropdown-item">Action</p>
+                  <p class="dropdown-item">Another action</p>
+                  <p class="dropdown-item">Something else here</p>
+              </div>
+          </div></td>
+          <td>active</td>
+            <td >
+
+              <button type="button" class="btn btn-sm" data-toggle="modal" title= "edit account"data-target="#ex2">
+                extend
+              </button>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+                         
+
+    <h3 style="margin-top: 30px;">SHOW ALL YOUR TEMPORARY RESERVATION</h3>
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Room type </th>
+            <th>Arrive</th>
+            <th>Leave</th>
+            <th>Guests </th>
+            <th>Services </th>
+            <th>State</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>deluxe</td>
+            <td>17/1/2020</td>
+            <td>18/1/2020</td>
+            <td>4</td>
+            <td> <div class="dropdown">
+              <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown button
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <p class="dropdown-item">Action</p>
+                  <p class="dropdown-item">Another action</p>
+                  <p class="dropdown-item">Something else here</p>
+              </div>
+          </div> </td>
+          <td>active</td>
+            <td >
+                      <!-- the button for update -->
+                      <button type="button" class="btn btn-sm" data-toggle="modal" title= "edit account"data-target="#update1">
+                        update
+                    </button>
+                    <!-- the button for update -->
+                    <!-- the input for delete -->
+                    <form action="" style="display: inline-block;">
+                        <input type="submit" class="btn btn-sm" value="delete">
+                    </form>
+              <!-- the input for delete -->
+            </td>
+          </tr>
+          <tr>
+            <td>deluxe</td>
+            <td>17/1/2020</td>
+            <td>18/1/2020</td>
+            <td>4</td>
+            <td> <div class="dropdown">
+              <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown button
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <p class="dropdown-item">Action</p>
+                  <p class="dropdown-item">Another action</p>
+                  <p class="dropdown-item">Something else here</p>
+              </div>
+          </div></td>
+          <td>active</td>
+            <td>
+                    <!-- the button for update -->
+                    <button type="button" class="btn btn-sm" data-toggle="modal" title= "edit account"data-target="#update2">
+                      update
+                    </button>
+                    <!-- the button for update -->
+                    <!-- the input for delete -->
+                    <form action="" style="display: inline-block;">
+                      <input type="submit" class="btn btn-sm" value="delete">
+                    </form>
+                    <!-- the input for delete -->
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+
+</div>
+      </section>
+<!-- extend div -->
+<div class="modal fade" id="ex1" tabindex="-1" aria-labelledby="typeModalLabel"
+aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="typeModalLabel" style="color: #C98686;">extend the reservation</h5>
+            <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div id="forms" class="forms">
+                <form action="">
+                    
+                   
+                  
+                    <div class="form-group">
+
+                        <div class="grid">
+                            
+                                <div class="controls">
+                                    
+                                  <input type="date"  name="leave" id="leave"
+                                  class="floatLabel">
+                              <label for="leave">leave</label>
+                                </div>
+                               <div class="text-center">
+                                <input type="submit" class="main-bot" value="submit">                                                                   </div>
+                                
+                        </div>
+                        
+                    </div>
+                   
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+                data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+</div>
+                <!-- extend div -->
+             
+<div class="modal fade" id="ex2" tabindex="-1" aria-labelledby="typeModalLabel"
+aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="typeModalLabel" style="color: #C98686;">extend the reservation</h5>
+            <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div id="forms" class="forms">
+                <form action="">
+                    
+                   
+                  
+                    <div class="form-group">
+
+                        <div class="grid">
+                            
+                                <div class="controls">
+                                    
+                                  <input type="date"  name="leave" id="leave"
+                                  class="floatLabel">
+                              <label for="leave">leave</label>
+                                </div>
+                               <div class="text-center">
+                                <input type="submit" class="main-bot" value="submit">                                                                   </div>
+                                
+                        </div>
+                        
+                    </div>
+                   
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+                data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+</div>
+                <!-- update div -->
+                <div class="modal fade" id="update1" tabindex="-1" aria-labelledby="typeModalLabel"
+aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="typeModalLabel" style="color: #C98686;">update the reservation</h5>
+            <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <div id="forms" class="forms">
+            <form action="">
+
+
+
+                <div class="form-group">
+
+                    <div class="grid">
+
+                        
+                        <div class="controls ">
+                            <!-- select room type -->
+                            <select class="floatLabel" style="width: 65%;">
+                                <option value="Mariotte Gold Junior Suite">Mariotte Gold Junior Suite
+                                </option>
+                                <option value="Mariotte Gold  Suite">Mariotte Gold Suite</option>
+                                <option value="Deluxe Room">Deluxe Room</option>
+                            </select>
+                            <label for="room-type">Room Type</label>
+                        </div>
+                        <div class="controls">
+
+                            <input type="date" required name="firstdate" id="firstdate" class="floatLabel">
+                            <label for="firstdate">Arrive</label>
+                        </div>
+
+
+                        <div class="controls">
+                            <input type="date" required name="lastdate" id="lastdate" class="floatLabel">
+                            <label for="lastdate">leave</label>
+
+                        </div>
+
+
+                        <div class="controls ">
+                            <input type="number" name="guests" value="1" min="1" max="10" id="guests"
+                                class="floatLabel">
+                            <label for="guests">Guests</label>
+                        </div>
+
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Additional Services</legend>
+                            <div class="control-group">
+                                <div class="add-services">
+                                    <div class="form-check form-check-inline">
+
+                                        <label class=" contain" for="inlineCheckbox1">
+                                            <input class="form-check-input" type="checkbox"
+                                                id="inlineCheckbox1" value="Laundry">
+                                            <span class="checkmark"></span>
+                                            Laundry</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+
+                                        <label class=" contain" for="inlineCheckbox2">
+                                            <input class="form-check-input" type="checkbox"
+                                                id="inlineCheckbox2" value="Hadicapped">
+                                            <span class="checkmark"></span>
+                                            Handicapped</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+
+                                        <label class=" contain" for="inlineCheckbox3">
+                                            <input class="form-check-input" type="checkbox"
+                                                id="inlineCheckbox3"
+                                                value="Complimentary tea & coffee making facilities">
+                                            <span class="checkmark"></span>
+                                            Complimentary tea & coffee making facilities</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+
+                                        <label class=" contain" for="inlineCheckbox4">
+                                            <input class="form-check-input" style="font-size: small;"
+                                                type="checkbox" id="inlineCheckbox4"
+                                                value="Nourish healthy In Room Bar">
+                                            <span class="checkmark"></span>
+                                            Nourish healthy In Room Bar</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="main-bot" value="Submit">Submit</button> </div>
+
+                </div>
+            </form>
+        </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+                data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+</div>
+                        <!-- update div -->
+
+                        <div class="modal fade" id="update2" tabindex="-1" aria-labelledby="typeModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="typeModalLabel" style="color: #C98686;">update the reservation</h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                  <div id="forms" class="forms">
+                                    <form action="">
+                        
+                        
+                        
+                                        <div class="form-group">
+                        
+                                            <div class="grid">
+                        
+                                                
+                                                <div class="controls ">
+                                                    <!-- select room type -->
+                                                    <select class="floatLabel" style="width: 65%;">
+                                                        <option value="Mariotte Gold Junior Suite">Mariotte Gold Junior Suite
+                                                        </option>
+                                                        <option value="Mariotte Gold  Suite">Mariotte Gold Suite</option>
+                                                        <option value="Deluxe Room">Deluxe Room</option>
+                                                    </select>
+                                                    <label for="room-type">Room Type</label>
+                                                </div>
+                                                <div class="controls">
+                        
+                                                    <input type="date" required name="firstdate" id="firstdate" class="floatLabel">
+                                                    <label for="firstdate">Arrive</label>
+                                                </div>
+                        
+                        
+                                                <div class="controls">
+                                                    <input type="date" required name="lastdate" id="lastdate" class="floatLabel">
+                                                    <label for="lastdate">leave</label>
+                        
+                                                </div>
+                        
+                        
+                                                <div class="controls ">
+                                                    <input type="number" name="guests" value="1" min="1" max="10" id="guests"
+                                                        class="floatLabel">
+                                                    <label for="guests">Guests</label>
+                                                </div>
+                        
+                                                <fieldset class="scheduler-border">
+                                                    <legend class="scheduler-border">Additional Services</legend>
+                                                    <div class="control-group">
+                                                        <div class="add-services">
+                                                            <div class="form-check form-check-inline">
+                        
+                                                                <label class=" contain" for="inlineCheckbox1">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        id="inlineCheckbox1" value="Laundry">
+                                                                    <span class="checkmark"></span>
+                                                                    Laundry</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                        
+                                                                <label class=" contain" for="inlineCheckbox2">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        id="inlineCheckbox2" value="Hadicapped">
+                                                                    <span class="checkmark"></span>
+                                                                    Handicapped</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                        
+                                                                <label class=" contain" for="inlineCheckbox3">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        id="inlineCheckbox3"
+                                                                        value="Complimentary tea & coffee making facilities">
+                                                                    <span class="checkmark"></span>
+                                                                    Complimentary tea & coffee making facilities</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                        
+                                                                <label class=" contain" for="inlineCheckbox4">
+                                                                    <input class="form-check-input" style="font-size: small;"
+                                                                        type="checkbox" id="inlineCheckbox4"
+                                                                        value="Nourish healthy In Room Bar">
+                                                                    <span class="checkmark"></span>
+                                                                    Nourish healthy In Room Bar</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                        
+                                            </div>
+                                            <div class="text-center">
+                                                <button type="submit" class="main-bot" value="Submit">Submit</button> </div>
+                        
+                                        </div>
+                                    </form>
+                                </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+  <footer >
+    <div class="container text-center">
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <div class="links text-md-left">
+      <h4>Helpful links</h4>
+      <ul class="list-unstyled  ">
+  <li><a href="#hotel"><i class="fa fa-chevron-right"></i> Hotel</a></li>
+  <li><a href="#gallary"><i class="fa fa-chevron-right"></i>Gallary</a></li>
+  <li><a href="#rooms"><i class="fa fa-chevron-right"></i>Rooms</a></li>
+  <li><a href="#offers"><i class="fa fa-chevron-right"></i>Offers</a></li>
+  <li><a href="#customers"><i class="fa fa-chevron-right"></i>customers</a></li>
+  
+      </ul>
+    </div>
+  </div>
+    <div class="col-sm-12 col-md-6">
+      <div class="contact">
+        <h4>Have A Question</h4>
+        <ul class="list-unstyled">
+            <li style="color: #f7f7f7;"> <i class="fas fa-map-marker-alt" aria-hidden="true"></i>203 Fake St.Mountain View, San Francisco, California, USA</li>
+            <li style="color: #f7f7f7;"><i class="fas fa-phone-alt" aria-hidden="true"></i>+84545 37534 48</li>
+            <li><a href="mailto:sarpymresh@gmail.com?subject=contact"><i class="fas fa-envelope" aria-hidden="true"></i>sarpymresh@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+  </footer>
+  <div class="copyright">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-center text-md-left text-uppercase copy" style="color:#f7f7f7">
+        Copyright <span style="color:#FFC300;">2021</span> Mariotte &copy; All Right Reserved 
+      </div>
+      <div class="col-md-6 text-center text-md-right">
+        <ul class="list-unstyled">
+          <li><a href="https://www.facebook.com/sarpy.mresh.5" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+          <li><a href="https://www.facebook.com/sarpy.mresh.5" target="_blank"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="https://www.facebook.com/sarpy.mresh.5" target="_blank"><i class="fab fa-youtube"></i></a></li>
+          <li><a href="https://www.facebook.com/sarpy.mresh.5" target="_blank"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="https://www.facebook.com/sarpy.mresh.5" target="_blank"><i class="fab fa-google-plus-g"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i
+    class="fas fa-chevron-up"></i></a>
+</section><script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script> 
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/script-form.js"></script>
+    <script src="../js/wow.min.js"></script>
+    </body>
+</html>

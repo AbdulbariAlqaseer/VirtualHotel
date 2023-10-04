@@ -1,0 +1,300 @@
+{% extends 'main base.html' %}
+{% load static %}
+{% block content %}
+  <!-- carousel -->
+  <div class="wrapper" style="height: 100vh;">
+
+    <div id="carouselRooms" class="carousel slide" data-ride="carousel">
+
+      <ol class="carousel-indicators">
+        <li data-target="#carouselRooms" data-slide-to="0" class="active"></li>
+        {% for i in lstNumType %}
+        <li data-target="#carouselRooms" data-slide-to="{{i}}"></li>
+        {% endfor %}
+      </ol>
+      <a class="carousel-control-prev" href="#carouselRooms" role="button" data-slide="prev" style="z-index: 5;">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselRooms" role="button" data-slide="next" style="z-index: 5;">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+
+      <div class="carousel-inner">
+        <div class="carousel-item active" style="height: 100vh;">
+          <img src="{{ firstType.image.url }}" style="height: 100%; width: 100%;" alt="">
+          <div class="carousel-caption">
+            <h2>{{ firstType.name }}</h2>
+            <hr>
+          </div>
+        </div>
+        {% for type in types %}
+        <div class="carousel-item " style="height: 100vh;">
+          <img src="{{ type.image.url }}" style="height: 100%; width: 100%;" alt="">
+          <div class="carousel-caption">
+            <h2>{{ type.name }}</h2>
+            <hr>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+
+
+    </div>
+  </div>
+  <a id="viewphotos" onclick="openModal();currentSlide(1)" class="btn btn-light btn-lg viewphotos" role="button">
+    view photos
+  </a>
+  <div id="myModal-gal" class="modal-gal">
+    <span class="close cursor" onclick="closeModal()">&times;</span>
+    <div class="modal-content-gal">
+      <!---                       here                           -->
+      <div class="mySlides">
+        <img src="{{firstType.image.url}}" style="width:100%">
+      </div>
+      {% for type in types %}
+      <div class="mySlides">
+        <img src="{{type.image.url}}" style="width:100%">
+      </div>
+      {% endfor %}
+
+      <a class="prev-gal" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next-gal" onclick="plusSlides(1)">&#10095;</a>
+
+      <div class="caption-container-gal">
+        <p id="caption-gal"></p>
+      </div>
+
+      <div class="column">
+        <img class="demo cursor" src="{{firstType.image.url}}" style="width:100%"
+          onclick="currentSlide(1)" alt="{{firstType.name}}">
+      </div>
+      {% for type,i in ziped %}
+      <div class="column">
+        <img class="demo cursor" src="{{type.image.url}}" style="width:100%"
+          onclick="currentSlide('{{i}}')" alt="{{type.name}}">
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <section id="book-room">
+    <div class="container">
+      <div class="title">
+        <h4>Discover Rooms & Book</h4>
+      </div>
+      <div class="container-fluid">
+        <!--                                             here -->
+        <div class="card text-center my-3">
+          <img src="{{firstType.image.url}}" id="myImg" onclick="clickphoto(this);"
+            class="card-img-top" alt="{{firstType.name}}">
+          <div class="card-body">
+            <h4 class="card-title">{{firstType.name}}</h4>
+            <hr>
+            <p class="card-text text-center font-italic">See more information about this room and its utilities.</p>
+            <p class="card-text"><span>$</span>{{firstType.price}}</p>
+            <a class="btn" data-toggle="collapse" href="#multiCollapseExample{{firstType.id}}" role="button" aria-expanded="false"
+              aria-controls="multiCollapseExample{{firstType.id}}">
+              <i class="fas fa-chevron-up" onclick="tog(this);"></i></a>
+          </div>
+        </div>
+        <div class="collapse multi-collapse" id="multiCollapseExample{{firstType.id}}">
+          <div class="card card-body text-center">
+            <h2 class="room-name">{{firstType.name}}</h2>
+            <hr>
+            <div class="facilities" role="list">
+              <div class="faclities-sec" role="listitem">
+                <div class="fac-sec-img">
+                  <i class="fas fa-user-friends"></i>
+                </div>
+                <div class="fac-sec1-details"> {{firstType.max_guests}} people</div>
+              </div>
+              <div class="line-between"></div>
+              <div class="faclities-sec" role="listitem">
+                <div class="fac-sec-img">
+                  <i class="fas fa-bath"></i>
+                </div>
+                <div class="fac-sec2-details">Bathroom</div>
+              </div>
+            </div>
+            <h3 class="font-italic" style="font-weight: lighter;">Description</h3>
+            <div class="description mx-auto ">{{firstType.desc}}</div>
+            <div class="room-other-info">
+
+              <div class="col-sm-12">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-4">Room Size</div>
+                    <div class="col-sm-8"> {{firstType.size}} sq.m</div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-sm-12">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-4">Beds number</div>
+                    <div class="col-sm-8"> {{firstType.beds}} </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% for type in types%}
+        <div class="card text-center my-3">
+          <img src="{{type.image.url}}" id="myImg" onclick="clickphoto(this);"
+            class="card-img-top" alt="{{type.name}}">
+          <div class="card-body">
+            <h4 class="card-title">{{type.name}}</h4>
+            <hr>
+            <p class="card-text text-center font-italic">See more information about this room and its utilities.</p>
+            <p class="card-text"><span>$</span>{{type.price}}</p>
+            <a class="btn" data-toggle="collapse" href="#multiCollapseExample{{type.id}}" role="button" aria-expanded="false"
+              aria-controls="multiCollapseExample{{type.id}}">
+              <i class="fas fa-chevron-up" onclick="tog(this);"></i></a>
+          </div>
+        </div>
+        <div class="collapse multi-collapse" id="multiCollapseExample{{type.id}}">
+          <div class="card card-body text-center">
+            <h2 class="room-name">{{type.name}}</h2>
+            <hr>
+            <div class="facilities" role="list">
+              <div class="faclities-sec" role="listitem">
+                <div class="fac-sec-img">
+                  <i class="fas fa-user-friends"></i>
+                </div>
+                <div class="fac-sec1-details"> {{type.max_guests}} people</div>
+              </div>
+              <div class="line-between"></div>
+              <div class="faclities-sec" role="listitem">
+                <div class="fac-sec-img">
+                  <i class="fas fa-bath"></i>
+                </div>
+                <div class="fac-sec2-details">Bathroom</div>
+              </div>
+            </div>
+            <h3 class="font-italic" style="font-weight: lighter;">Description</h3>
+            <div class="description mx-auto ">{{type.desc}}</div>
+            <div class="room-other-info">
+
+              <div class="col-sm-12">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-4">Room Size</div>
+                    <div class="col-sm-8"> {{type.size}} sq.m</div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-sm-12">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-4">Beds number</div>
+                    <div class="col-sm-8"> {{type.beds}} </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        {% endfor %}
+         <!--                  to here             -->
+        
+      </div>
+
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01" style="max-width:600px;max-height: 600px;">
+        <div id="caption"></div>
+      </div>
+    </div>
+
+    <!-- Booking form -->
+  </section>
+  <section id="booking">
+    <div class="container ">
+      <div class="title">
+        <h4>Booking</h4>
+      </div>
+    </div>
+
+    <h1 class="book-title text-center mx-auto " style="max-width: 50%;"> Book A Room</h1>
+
+    <div class="back">
+      <div class="book mx-auto">
+        <form action="{% url 'add temp reservation' %}" method = "POST" name="booking-form" >{% csrf_token %}
+          <div class="control text-center"> <label for="room-type" name="room-type">Room Type</label> <br>
+            <!-- select room type -->
+            <select name = "type" style="width: 65%;" required>
+              <option value="{{firstType.name}}">{{firstType.name}}</option>
+              {% for type in types %}
+              <option value="{{type.name}}">{{type.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="row no-margin text-center control">
+            <div class="col-md-6">
+              <label for="date1" name="date1">Arrive</label> <br>
+              <input type="date" name="date1" id="date1" style="width: 65%;">
+            </div>
+            <div class="col-md-6">
+              <label for="date2" name="date2">Leaving</label> <br>
+              <input type="date" name="date2" id="date2" style="width: 65%;">
+            </div>
+          </div>
+          <div class="control text-center"> <label for="guests" name="guests">Guests</label> <br>
+            <input type="number" name="guests" value="1" min="1" id="guests" style="width: 20%;">
+          </div>
+          <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Additional Services</legend>
+            <div class="control-group">
+              <div class="add-services">
+                {% for ser in sevices %}
+                <div class="form-check form-check-inline">
+                  <label class=" contain" for="inlineCheckbox{{ser.id}}">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ser.id}}" name="{{ser.name}}">
+                    <span class="checkmark"></span>
+                    {{ser.name}}</label>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </fieldset>
+          <small id="info" class="form-text text-muted">
+            tip: All of dates in the form are in UTC.
+          </small>
+          <div class="bot-book text-center">
+            <input type="reset" value="Reset">
+            <!--booking buttom-->
+            <input type="submit" name="book" id="book" value="book">
+            <span class="back-message"></span>
+          </div>
+        </form>
+      </div>
+    </div>
+    {% if error %}
+      <div class="message fail" id="message">
+        <div class="mes-info text-center ">
+          <h5>fail</h5>
+          <p>{{error}}</p>
+        </div>
+        <span class="close" onclick="closeMessage();">&times;</span>
+      </div>
+    {% endif %}
+    {% if message %}
+      <div class="message success" id="message">
+        <div class="mes-info text-center ">
+          <h5>success</h5>
+          <p>{{message}}</p>
+        </div>
+        <span class="close" onclick="closeMessage();">&times;</span>
+      </div>
+    {% endif %}
+  </section>
+{% endblock %}

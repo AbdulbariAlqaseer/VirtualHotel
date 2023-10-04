@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="add-review text-center" style="margin-top: 90px;">
+    <div class="container">
+        <h3>ADD YOUR OWN REVIEW</h3>
+        {% if massege %}
+            <p style="color: red;">{{massege}}</p>
+        {% endif %}
+        <p class="info-text">
+            Please add your comment
+        </p>
+        <div id="forms" class="forms">
+            <form action="{% url 'add review' %}" method="POST">{% csrf_token %}
+
+
+
+                <div class="form-group">
+
+                    <div class="grid">
+                        <div class="controls">
+                            <textarea name="description" maxlength="135" class="floatLabel" id="description" required></textarea>
+                            <label for="description">Comment</label>
+                        </div>
+                        <p class="info-text"> Add your rate</p>
+                        <div class="rating">
+                            <input id="radio1" type="radio" name="star" value="5" class="star" required />
+                            <label for="radio1">&#9733;</label>
+                            <input id="radio2" type="radio" name="star" value="4" class="star" required/>
+                            <label for="radio2">&#9733;</label>
+                            <input id="radio3" type="radio" name="star" value="3" class="star" required/>
+                            <label for="radio3">&#9733;</label>
+                            <input id="radio4" type="radio" name="star" value="2" class="star" required/>
+                            <label for="radio4">&#9733;</label>
+                            <input id="radio5" type="radio" name="star" value="1" class="star" required/>
+                            <label for="radio5">&#9733;</label>
+                        </div>
+                        <input type="submit" class="main-bot" style="margin-top: 15px;" value="submit">
+
+
+                    </div>
+
+            </form>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

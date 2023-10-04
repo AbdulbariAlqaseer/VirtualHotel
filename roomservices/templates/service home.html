@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    {% if massege %}
+        <p style="color: red;">{{ massege }}</p>
+    {% endif %}
+    <form action="{% url 'service home' %}" method="post">{% csrf_token %}
+        <p>Create New Service:</p>
+        <p>Name: <input type="text" name='name'></p>
+        <input type="submit" value="Add Service">
+    </form>
+    <hr>
+    <table border="2px">
+        {% for service in services %}
+            <tr>
+                <td>{{service.id}}</td>
+                <td>{{service.name}}</td>
+                <td><button><a href="{% url 'delete service' id=service.id %}">Delete Service</a></button></td>
+            </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+</html>
