@@ -7,9 +7,8 @@
     <div id="carouselRooms" class="carousel slide" data-ride="carousel">
 
       <ol class="carousel-indicators">
-        <li data-target="#carouselRooms" data-slide-to="0" class="active"></li>
-        {% for i in lstNumType %}
-        <li data-target="#carouselRooms" data-slide-to="{{i}}"></li>
+        {% for _ in types %}
+        <li data-target="#carouselRooms" data-slide-to="{{forloop.counter|add:'-1'}}" {% if forloop.first %} class="active" {% endif %}></li>
         {% endfor %}
       </ol>
       <a class="carousel-control-prev" href="#carouselRooms" role="button" data-slide="prev" style="z-index: 5;">
@@ -22,15 +21,12 @@
       </a>
 
       <div class="carousel-inner">
-        <div class="carousel-item active" style="height: 100vh;">
-          <img src="{{ firstType.image.url }}" style="height: 100%; width: 100%;" alt="">
-          <div class="carousel-caption">
-            <h2>{{ firstType.name }}</h2>
-            <hr>
-          </div>
-        </div>
         {% for type in types %}
-        <div class="carousel-item " style="height: 100vh;">
+        {% if forloop.first %}
+        <div class="carousel-item active" style="height: 100vh;">
+        {% else %}
+        <div class="carousel-item" style="height: 100vh;">
+        {% endif %}
           <img src="{{ type.image.url }}" style="height: 100%; width: 100%;" alt="">
           <div class="carousel-caption">
             <h2>{{ type.name }}</h2>
@@ -51,9 +47,6 @@
     <span class="close cursor" onclick="closeModal()">&times;</span>
     <div class="modal-content-gal">
       <!---                       here                           -->
-      <div class="mySlides">
-        <img src="{{firstType.image.url}}" style="width:100%">
-      </div>
       {% for type in types %}
       <div class="mySlides">
         <img src="{{type.image.url}}" style="width:100%">
@@ -67,14 +60,10 @@
         <p id="caption-gal"></p>
       </div>
 
-      <div class="column">
-        <img class="demo cursor" src="{{firstType.image.url}}" style="width:100%"
-          onclick="currentSlide(1)" alt="{{firstType.name}}">
-      </div>
-      {% for type,i in ziped %}
+      {% for type in types %}
       <div class="column">
         <img class="demo cursor" src="{{type.image.url}}" style="width:100%"
-          onclick="currentSlide('{{i}}')" alt="{{type.name}}">
+          onclick="currentSlide('{{forloop.counter}}')" alt="{{type.name}}">
       </div>
       {% endfor %}
     </div>
@@ -85,63 +74,6 @@
         <h4>Discover Rooms & Book</h4>
       </div>
       <div class="container-fluid">
-        <!--                                             here -->
-        <div class="card text-center my-3">
-          <img src="{{firstType.image.url}}" id="myImg" onclick="clickphoto(this);"
-            class="card-img-top" alt="{{firstType.name}}">
-          <div class="card-body">
-            <h4 class="card-title">{{firstType.name}}</h4>
-            <hr>
-            <p class="card-text text-center font-italic">See more information about this room and its utilities.</p>
-            <p class="card-text"><span>$</span>{{firstType.price}}</p>
-            <a class="btn" data-toggle="collapse" href="#multiCollapseExample{{firstType.id}}" role="button" aria-expanded="false"
-              aria-controls="multiCollapseExample{{firstType.id}}">
-              <i class="fas fa-chevron-up" onclick="tog(this);"></i></a>
-          </div>
-        </div>
-        <div class="collapse multi-collapse" id="multiCollapseExample{{firstType.id}}">
-          <div class="card card-body text-center">
-            <h2 class="room-name">{{firstType.name}}</h2>
-            <hr>
-            <div class="facilities" role="list">
-              <div class="faclities-sec" role="listitem">
-                <div class="fac-sec-img">
-                  <i class="fas fa-user-friends"></i>
-                </div>
-                <div class="fac-sec1-details"> {{firstType.max_guests}} people</div>
-              </div>
-              <div class="line-between"></div>
-              <div class="faclities-sec" role="listitem">
-                <div class="fac-sec-img">
-                  <i class="fas fa-bath"></i>
-                </div>
-                <div class="fac-sec2-details">Bathroom</div>
-              </div>
-            </div>
-            <h3 class="font-italic" style="font-weight: lighter;">Description</h3>
-            <div class="description mx-auto ">{{firstType.desc}}</div>
-            <div class="room-other-info">
-
-              <div class="col-sm-12">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-sm-4">Room Size</div>
-                    <div class="col-sm-8"> {{firstType.size}} sq.m</div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="col-sm-12">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-sm-4">Beds number</div>
-                    <div class="col-sm-8"> {{firstType.beds}} </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         {% for type in types%}
         <div class="card text-center my-3">
           <img src="{{type.image.url}}" id="myImg" onclick="clickphoto(this);"
@@ -231,7 +163,6 @@
           <div class="control text-center"> <label for="room-type" name="room-type">Room Type</label> <br>
             <!-- select room type -->
             <select name = "type" style="width: 65%;" required>
-              <option value="{{firstType.name}}">{{firstType.name}}</option>
               {% for type in types %}
               <option value="{{type.name}}">{{type.name}}</option>
               {% endfor %}

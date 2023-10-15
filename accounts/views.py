@@ -212,7 +212,7 @@ def login_view(request):
                 return redirect('home')
 
         else:
-            context['login_form']= form
+            context['login_form'] = form
             return render(request, 'user login.html',context)
 
     else:

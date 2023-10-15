@@ -27,11 +27,23 @@ class StaffRegistrationForm(UserCreationForm):
 
 class AccountAuthenticationForm(forms.ModelForm):
 
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    # password = forms.CharField(label='Password', widget=forms.PasswordInput)
 
     class Meta:
         model=Account
         fields=('email','password')
+        widgets = {
+            'email': forms.EmailInput(attrs={
+                'class': "form-control", 
+                'style': 'max-width: 300px;',
+                'placeholder': 'Email'
+                }),
+            'password': forms.PasswordInput(attrs={
+                'class': "form-control", 
+                'style': 'max-width: 300px;',
+                'placeholder': 'Password'
+            })
+        }
 
     def clean(self):
         if self.is_valid():

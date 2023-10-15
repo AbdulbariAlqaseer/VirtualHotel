@@ -20,13 +20,13 @@
 <div class="container">
     
 <form action="{% url 'login' %}" method="POST">{% csrf_token %}
-    <h1>log in</h1>
-    {% for field in login_form %}
+    <h1>LOG IN</h1>
     <div class="cont">
-        {{field.label_tag}}
-        {{field}}
-    </div>   
-        {% endfor %}
+        {{ login_form.email }}
+    </div>
+    <div class="cont">
+        {{ login_form.password }}
+    </div>
 
         {% for field in login_form %}
             {% for error in field.errors %}

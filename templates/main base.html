@@ -35,14 +35,14 @@
       <div class="collapse navbar-collapse align-self-end flex-wrap w-auto " id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item ">
-            <a id="nav-link " class="nav-link1" href="{% url 'home' %}">Home </a>
+            <a id="nav-link" class="nav-link2" href="{% url 'home' %}">Home </a>
           </li>
           <li class="nav-item">
             <a id="nav-link" class="nav-link2" href="{% url 'add temp reservation' %}">Booking</a>
           </li>
           
           <li class="nav-item">
-            <a id="nav-link"class="nav-link4" href="{% url 'about' %}">About</a>
+            <a id="nav-link" class="nav-link4" href="{% url 'about' %}">About</a>
           </li>
           {% if request.user.is_authenticated and not request.user.is_staff %}
           <li class="nav-item">

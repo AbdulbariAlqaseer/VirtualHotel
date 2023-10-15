@@ -93,15 +93,21 @@ img {
 
 input {
  
-    background: none;
-    border: none;
-    outline: none;
-    font-size: 17px;
-    letter-spacing: 1px;
-    padding: 5px;
-    margin-left: 20px;
-    color: white;
-  
+background: none;
+ 
+border: none;
+ 
+outline: none;
+ 
+font-size: 17px;
+ 
+letter-spacing: 1px;
+ 
+padding: 5px;
+ 
+/* margin-left: 20px; */
+ 
+color: white;
  }
  .box .cont {
     padding: 10px;
@@ -119,11 +125,13 @@ input {
      
  }
  .box a {
-    float: right;
+    /* float: right; */
     color: #f7f7f7;
     font-size: 14px;
     line-height: 24px;
-    margin-top: 100px;
+    margin-top: 11%;
+    display: block;
+    text-align: center;
  }
  .box1 a {
     float: right;
@@ -157,18 +165,19 @@ input {
      transform: scale(1.1,1.1);
  }
  .main-bot {
-     position: relative;
-     left: 30px;
-    padding-left: 30px;
-    padding-right: 30px;
-    margin-top: 30px;
-    margin-left: 66px;
-    background-color:#FFC300;
-    border: 0;
-    border-radius: 3px;
-    color: var(--second-color);
-    box-shadow: 0px 2px rgb(0 0 0 / 15%);
-
+     /* position: relative; */
+     display: block;
+     margin: 20% auto 0;
+     /* left: 30px; */
+     padding-left: 30px;
+     padding-right: 30px;
+     /* margin-top: 30px; */
+     /* margin-left: 66px; */
+     background-color:#FFC300;
+     border: 0;
+     border-radius: 3px;
+     color: var(--second-color);
+     box-shadow: 0px 2px rgb(0 0 0 / 15%);
  }
  .box1 .main-bot {
     position: relative;

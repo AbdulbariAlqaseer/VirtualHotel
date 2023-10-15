@@ -127,11 +127,6 @@ def add_temp_reservation(request):
     context['sevices'] = Service.objects.all()
     context['types'] = RoomTypes.objects.all()
 
-    context['firstType'] = context['types'].first()
-    context['types'] = context['types'][1:]
-    context['lstNumType'] = [(i+1) for i in range(len(context['types']))]
-    context['ziped'] = zip(context['types'],[(i+2) for i in range(len(context['types']))])
-
     if request.method == 'GET':
         print("get")
         return render(request,'booking.html',context)
